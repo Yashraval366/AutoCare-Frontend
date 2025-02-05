@@ -10,7 +10,7 @@ commands to create new branch:
 
 commands to push your branch to github codebase:
     git commmit -m "your-commit msg"
-    git push -u origin your-branch-name
+    git push origin your-branch-name
 
 commad to see the the updated github codebase(updates only if leader merges) 
     git pull origin main
