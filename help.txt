@@ -1,0 +1,16 @@
+commands you can use for taking code from github codebase:
+    git clone https://github.com/Yashraval366/new-project.git
+
+commands to create new branch:
+    git branch your-branch-name
+    git switch your-branch-name
+    to add your created files to git attention
+    use: 
+        git add .
+
+commands to push your branch to github codebase:
+    git commmit -m "your-commit msg"
+    git push -u origin your-branch-name
+
+commad to see the the updated github codebase(updates only if leader merges) 
+    git pull origin main
