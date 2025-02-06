@@ -13,7 +13,7 @@
 
 .main{
     width: 100%;
-    background: linear-gradient(to top, #fff(0,0,0,0.5)50%, #fff(0,0,0,0.5)50%);
+    /* background: linear-gradient(to top, #fff(0,0,0,0.5)50%, #fff(0,0,0,0.5)50%); */
     background-image: url(new-project/login.jpg);
     background-repeat: no-repeat;
     background-position: center;
