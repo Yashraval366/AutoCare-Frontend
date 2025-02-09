@@ -26,7 +26,7 @@ body {
 
 .main{
     width: 100%;
-    background-image: url('/new-project/src/images/home.jpg');
+    background-image: url('https://raw.githubusercontent.com/Yashraval366/new-project/refs/heads/main/src/images/home.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
