@@ -165,7 +165,6 @@ input::placeholder {
     letter-spacing: 1.2px;
     line-height: 25px;
     width: 40%;
-    background-color: rgba(0, 0, 0, 0.518);
 }
 
 .content h1{
@@ -176,7 +175,6 @@ input::placeholder {
     width: 29%;
     margin-left: 91px;
     margin-bottom: 10px;
-    background-color: rgba(0, 0, 0, 0.518);
 }
 
 
