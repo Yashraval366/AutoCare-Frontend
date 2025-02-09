@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Booking Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .form-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, select {
+            width: 90%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .input-icon {
+            position: relative;
+        }
+        .input-icon input {
+            padding-left: 30px;
+        }
+        .input-icon i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #555;
+        }
+        button {
+            margin-top: 15px;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: #28a745;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <form>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="number">Phone Number</label>
+            <input type="tel" id="number" name="number" pattern="[0-9]{10}" maxlength="10" required onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+
+            <label for="date">Select Date</label>
+            <div class="input-icon">
+                <i class="fa fa-calendar"></i>
+                <input type="date" id="date" name="date" required>
+            </div>
+
+            <label for="time">Select Time</label>
+            <div class="input-icon">
+                <i class="fa fa-clock"></i>
+                <input type="time" id="time" name="time" required>
+            </div>
+
+            <label for="vehicle">Vehicle Model</label>
+            <input type="text" id="vehicle" name="vehicle" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
