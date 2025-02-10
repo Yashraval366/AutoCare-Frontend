@@ -1,0 +1,119 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f4f7f6;
+}
+
+.header {
+    text-align: center;
+    font-size:  1rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.dashboard-container {
+    width: 68%;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: inline-block;
+}
+
+.queue-container {
+    width: 28%;
+    margin-right: 5px;
+    margin-left: 7px;  
+    padding: 20px;
+    display: inline-block;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+
+}
+
+h2 {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.add-customer-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-customer-btn:hover {
+    background-color: #45a049;
+}
+
+.queue-container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.queue-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff5733;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.queue-container button:hover {
+    background-color: #e04e29;
+}
+
+.message-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.message-container input {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.message-container button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.message-container button:hover {
+    background-color: #0056b3;
+}

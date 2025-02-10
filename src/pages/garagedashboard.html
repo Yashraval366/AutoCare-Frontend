@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garage Dashboard</title>
+    <link rel="stylesheet" href="../styles/garagedashboard.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Garage Name</h1>
+    </div>
+    <div class="container">
+        <div class="dashboard-container">
+            <h2>Admin Dashboard</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>UserID</th>
+                        <th>ServiceID</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Slot Booked Time</th>
+                        <th>Slot Booked Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>C001</td>
+                        <td>S001</td>
+                        <td>yash</td>
+                        <td>1234567890</td>
+                        <td>10:00 AM</td>
+                        <td>20-10-2025</td>
+                    </tr>
+                    <tr>
+                        <td>C002</td>
+                        <td>S002</td>
+                        <td>vaishnavi</td>
+                        <td>1234567890</td>
+                        <td>11:00 AM</td>
+                        <td>2025-02-10</td>
+                    </tr>
+                    <tr>
+                        <td>C003</td>
+                        <td>S003</td>
+                        <td>preet</td>
+                        <td>1234567890</td>
+                        <td>12:00 PM</td>
+                        <td>2025-02-10</td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            <button class="add-customer-btn">Add Customer to Queue</button>
+        </div>
+        
+        <div class="queue-container">
+            <h3>Queue Management</h3>
+            <select>
+                <option value="">Select a Customer</option>
+                <option value="C001">C001 - John Doe</option>
+                <option value="C002">C002 - Jane Smith</option>
+                <option value="C003">C003 - Mark Lee</option>
+            </select>
+            <button>Remove from Queue</button>
+        
+            <div class="message-container">
+                <input type="text" placeholder="Message to Customer">
+                <button>Send Message</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
