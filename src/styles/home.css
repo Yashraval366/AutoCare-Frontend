@@ -289,6 +289,10 @@ h3{
     margin: 0 2px;
 }
 
+a {
+    all: unset;
+}
+
 .book-btn {
     display: block;
     background: #007bff;
@@ -298,6 +302,7 @@ h3{
     border-radius: 6px;
     cursor: pointer;
     transition: 0.3s;
+    text-decoration: none;
 }
 
 .book-btn:hover {
@@ -359,3 +364,99 @@ h3 {
     color: #555;
     line-height: 1.5;
 }
+
+.footer {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 40px;
+    width: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    width: 1000px;
+    margin: auto;
+}
+
+/* contact-us Section */
+
+.contact-us{
+    width: 50%;
+}
+
+.contact-us h2 {
+    margin: 10px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.contact-us p {
+    margin: 10px;
+    width: 75%;
+}
+
+.contact-us-form {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.contact-us-form input {
+    width: 350px;
+    height: 30px;;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+}
+
+.contact-us-form textarea{
+    width: 350px;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    resize: none;
+}
+
+.contact-us-form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 280px;
+}
+
+.contact-us-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Info (Schedule & Address) */
+
+.info h2,
+.contact h2 {
+    margin: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.info p,
+.contact p {
+    margin: 10px 0;
+    margin-left: 20px;
+}
+
+/* Contact & Social Links */
+.contact a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.contact a:hover {
+    text-decoration: underline;
+}
+
