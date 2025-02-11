@@ -1,0 +1,24 @@
+.bg-image {
+    background-image: url(../images/login.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    min-height: 100%;
+}
+
+.form-container {
+    padding: 50px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container h2 {
+    margin-bottom: 30px;
+}
+
+input {
+    width: 50%;
+}
