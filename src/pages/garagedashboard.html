@@ -1,75 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garage Dashboard</title>
+    <title>Garage Admin Dashboard</title>
     <link rel="stylesheet" href="../styles/garagedashboard.css">
-</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <body>
-    <div class="header">
-        <h1>Garage Name</h1>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <h2>Garage Admin</h2>
+            <nav>
+                <ul>
+                    <li><a href="#" onclick="showSection('dashboard')"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
+                    <li><a href="#" onclick="showSection('bookings')"><i class="fas fa-calendar-check"></i> Bookings</a></li>
+                    <li><a href="#" onclick="showSection('customers')"><i class="fas fa-users"></i> Customers</a></li>
+                    <li><a href="#" onclick="showSection('services')"><i class="fas fa-tools"></i> Services</a></li>
+                    <li><a href="#"><i class="fas fa-chart-line"></i> Reports</a></li>
+                    <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="content">
+            <header class="topbar">
+                <h1>Dashboard</h1>
+                <div class="user-profile">
+                    <img src="profile.jpg" alt="User" class="profile-img">
+                    <span>Admin</span>
+                </div>
+            </header>
+            <section>
+                <section class="stats">
+                    <div class="card">Total Bookings: <strong>120</strong></div>
+                    <div class="card">Pending Services: <strong>15</strong></div>
+                    <div class="card">Completed Services: <strong>95</strong></div>
+                    <div class="card">Revenue: <strong>$5000</strong></div>
+                </section>
+                <section class="table-section" id="dashboard-section">
+                    <h2>Recent Bookings</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Customer</th>
+                                <th>Vehicle</th>
+                                <th>Service</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>001</td>
+                                <td>Yash</td>
+                                <td>Toyota Corolla</td>
+                                <td>Oil Change</td>
+                                <td>Feb 15, 2025</td>
+                                <td><span class="status pending">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>002</td>
+                                <td>Jeet</td>
+                                <td>Honda Civic</td>
+                                <td>Tire Rotation</td>
+                                <td>Feb 14, 2025</td>
+                                <td><span class="status pending">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>003</td>
+                                <td>Vaishnavi</td>
+                                <td>Ford Focus</td>
+                                <td>Brake Inspection</td>
+                                <td>Feb 13, 2025</td>
+                                <td><span class="status completed">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>003</td>
+                                <td>Preet</td>
+                                <td>Ford Focus</td>
+                                <td>Brake Inspection</td>
+                                <td>Feb 13, 2025</td>
+                                <td><span class="status cancelled">Cancelled</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </section>
+            <section id="bookings-section" class="hidden">
+                <h2>All Bookings</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Customer</th>
+                            <th>Vehicle</th>
+                            <th>Service</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>001</td>
+                            <td>Yash</td>
+                            <td>Toyota Corolla</td>
+                            <td>Oil Change</td>
+                            <td>Feb 15, 2025</td>
+                            <td><span class="status pending">Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>Jeet</td>
+                            <td>Honda Civic</td>
+                            <td>Tire Rotation</td>
+                            <td>Feb 14, 2025</td>
+                            <td><span class="status pending">Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>003</td>
+                            <td>Vaishnavi</td>
+                            <td>Ford Focus</td>
+                            <td>Brake Inspection</td>
+                            <td>Feb 13, 2025</td>
+                            <td><span class="status completed">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>003</td>
+                            <td>Preet</td>
+                            <td>Ford Focus</td>
+                            <td>Brake Inspection</td>
+                            <td>Feb 13, 2025</td>
+                            <td><span class="status cancelled">Cancelled</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
     </div>
-    <div class="container">
-        <div class="dashboard-container">
-            <h2>Admin Dashboard</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>UserID</th>
-                        <th>ServiceID</th>
-                        <th>Name</th>
-                        <th>Phone</th>
-                        <th>Slot Booked Time</th>
-                        <th>Slot Booked Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>C001</td>
-                        <td>S001</td>
-                        <td>yash</td>
-                        <td>1234567890</td>
-                        <td>10:00 AM</td>
-                        <td>20-10-2025</td>
-                    </tr>
-                    <tr>
-                        <td>C002</td>
-                        <td>S002</td>
-                        <td>vaishnavi</td>
-                        <td>1234567890</td>
-                        <td>11:00 AM</td>
-                        <td>20-10-2025</td>
-                    </tr>
-                    <tr>
-                        <td>C003</td>
-                        <td>S003</td>
-                        <td>preet</td>
-                        <td>1234567890</td>
-                        <td>12:00 PM</td>
-                        <td>20-10-2025</td>
-                    </tr>
-                </tbody>
-            </table>
-        
-            <button class="add-customer-btn">Add Customer to Queue</button>
-        </div>
-        
-        <div class="queue-container">
-            <h3>Queue Management</h3>
-            <select>
-                <option value="">Select a Customer</option>
-                <option value="C001">C001 - John Doe</option>
-                <option value="C002">C002 - Jane Smith</option>
-                <option value="C003">C003 - Mark Lee</option>
-            </select>
-            <button>Remove from Queue</button>
-        
-            <div class="message-container">
-                <input type="text" placeholder="Message to Customer">
-                <button>Send Message</button>
-            </div>
-        </div>
-    </div>
+    <script>
+        function showSection(section) {
+            document.getElementById("dashboard-section").classList.add("hidden");
+            document.getElementById("bookings-section").classList.add("hidden");
+
+            if (section === "dashboard") {
+                document.getElementById("dashboard-section").classList.remove("hidden");
+            } else if (section === "bookings") {
+                document.getElementById("bookings-section").classList.remove("hidden");
+            }
+        }
+    </script>
 </body>
 </html>
