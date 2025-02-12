@@ -141,7 +141,6 @@
             </section>
             <section id="report-section" class="hidden">
                     <div class="row">
-                        <!-- Bar Chart Representation -->
                         <div class="col-12">
                             <h4>Bookings per Shop</h4>
                             <canvas id="bookingChart" width="400" height="200"></canvas>
@@ -151,6 +150,27 @@
         </main>
     </div>
     <script>
+        var ctx = document.getElementById('bookingChart').getContext('2d');
+            var bookingChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Shop 1', 'Shop 2', 'Shop 3', 'Shop 4', 'Shop 5'],
+                    datasets: [{
+                        label: 'Slots Booked',
+                        data: [23, 5, 15, 25, 13],
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
         function showSection(section) {
             document.getElementById("dashboard-section").classList.add("hidden");
             document.getElementById("bookings-section").classList.add("hidden");
@@ -164,10 +184,7 @@
             }
             else if (section === "report") {
                 document.getElementById("report-section").classList.remove("hidden");
-                function navigateToReport() {
-    window.location.href = "new-project/src/pages/report.html"; // Redirects to report page
-}
-
+                document.getElementById("bookings-section").classList.remove("hidden");
             }
         }
     </script>
