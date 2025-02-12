@@ -6,6 +6,59 @@
     <title>Vehicle Booking Form</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="../styles/bookslot.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            width: 350px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background: #f9f9f9;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .services-checkboxes {
+            display: none;
+            margin-bottom: 10px;
+        }
+
+        .services-checkboxes label {
+            display: block;
+            font-weight: normal;
+        }
+
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #218838;
+        }
+    </style>
 </head>
 <body>
     <div class="form-container">
@@ -31,11 +84,44 @@
                 <input type="time" id="time" name="time" required>
             </div>
 
+            <!-- Services Dropdown -->
+            <label for="services">Select Service</label>
+            <select id="services" name="services" onchange="showServiceOptions()">
+                <option value="">-- Select Service --</option>
+                <option value="general">General Service</option>
+                <option value="oil">Oil Change</option>
+                <option value="brake">Brake Inspection</option>
+                <option value="tire">Tire Replacement</option>
+                <option value="other">Other Services</option>
+            </select>
+
+            <!-- Checkboxes for multiple service selection -->
+            <div id="service-options" class="services-checkboxes">
+                <label><input type="checkbox" name="service_options" value="general"> General Service</label>
+                <label><input type="checkbox" name="service_options" value="oil"> Oil Change</label>
+                <label><input type="checkbox" name="service_options" value="brake"> Brake Inspection</label>
+                <label><input type="checkbox" name="service_options" value="tire"> Tire Replacement</label>
+                <label><input type="checkbox" name="service_options" value="other"> Other Services</label>
+            </div>
+
             <label for="vehicle">Vehicle Model</label>
             <input placeholder="Enter your vehicle model" type="text" id="vehicle" name="vehicle" required>
 
             <button type="submit">Submit</button>
         </form>
     </div>
+
+    <script>
+        function showServiceOptions() {
+            var serviceDropdown = document.getElementById("services");
+            var serviceOptions = document.getElementById("service-options");
+
+            if (serviceDropdown.value !== "") {
+                serviceOptions.style.display = "block";
+            } else {
+                serviceOptions.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
