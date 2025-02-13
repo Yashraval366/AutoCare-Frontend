@@ -4,7 +4,7 @@ commands you can use for taking code from github codebase:
 commands to create new branch:
     git branch your-branch-name
     git switch your-branch-name
-    to add your created files to git attention
+    to add your created files to git attention/stage it
     use: 
         git add .
 
