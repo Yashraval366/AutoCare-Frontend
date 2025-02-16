@@ -208,11 +208,10 @@ body {
     color: white;
 }
 
-.hidden {
-    display: none;
-}
-
 .row {
     max-width: 80%;
     height: auto;
+}
+.hidden {
+display: none;
 }
