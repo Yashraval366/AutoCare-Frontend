@@ -1,67 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vehicle Booking Form</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="../styles/bookslot.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        .form-container {
-            width: 350px;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            background: #f9f9f9;
-        }
-
-        label {
-            font-weight: bold;
-            display: block;
-            margin: 10px 0 5px;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .services-checkboxes {
-            display: none;
-            margin-bottom: 10px;
-        }
-
-        .services-checkboxes label {
-            display: block;
-            font-weight: normal;
-        }
-
-        button {
-            background: #28a745;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            width: 100%;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background: #218838;
-        }
-    </style>
-</head>
-<body>
+<div id="modal-container">
     <div class="form-container">
+        <span class="close-btn" id="close-bookslot">&times;</span>
         <form>
             <label for="name">Name</label>
             <input type="text" id="name" name="name" placeholder="Enter your name" required>
@@ -72,15 +11,13 @@
             <label for="number">Phone Number</label>
             <input placeholder="Enter your contact number" type="tel" id="number" name="number" pattern="[0-9]{10}" maxlength="10" required onkeypress="return event.charCode >= 48 && event.charCode <= 57">
 
-            <label for="date">Select Date</label>
-            <div class="input-icon">
-                <i class="fa fa-calendar"></i>
+            <label for="date">Select Date</label><i class="fa fa-calendar"></i>
+            <div class="input-date">
                 <input type="date" id="date" name="date" required>
             </div>
 
-            <label for="time">Select Time</label>
+            <label for="time">Select Time</label><i class="fa fa-clock"></i>
             <div class="input-icon">
-                <i class="fa fa-clock"></i>
                 <input type="time" id="time" name="time" required>
             </div>
 
@@ -110,18 +47,4 @@
             <button type="submit">Submit</button>
         </form>
     </div>
-
-    <script>
-        function showServiceOptions() {
-            var serviceDropdown = document.getElementById("services");
-            var serviceOptions = document.getElementById("service-options");
-
-            if (serviceDropdown.value !== "") {
-                serviceOptions.style.display = "block";
-            } else {
-                serviceOptions.style.display = "none";
-            }
-        }
-    </script>
-</body>
-</html>
+</div>

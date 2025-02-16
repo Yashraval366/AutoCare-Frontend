@@ -1,5 +1,4 @@
-/* Modal Background */
-.modal-container {
+#signin-container {
     display: none;
     /* Initially hidden */
     position: fixed;
@@ -44,7 +43,7 @@
     margin-bottom: 15px;
 }
 
-label {
+.signin-label {
     display: block;
     font-size: 14px;
     margin-bottom: 5px;
@@ -129,4 +128,28 @@ button:hover {
 
 .signup-text a:hover {
     text-decoration: underline;
+}
+
+@keyframes fadeIn{
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes fadeOut{
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in forwards;
+}
+.fade-out{
+    animation: fadeOut 0.5s ease-out forwards;
 }

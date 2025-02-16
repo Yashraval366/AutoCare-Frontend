@@ -1,4 +1,4 @@
-<div class="modal-container" id="signin-container">
+<div id="signin-container">
     <div class="login-box">
         <!-- Close Button -->
         <span class="close-btn" id="close-signin">&times;</span>
@@ -8,7 +8,7 @@
 
         <!-- Role Selection Dropdown -->
         <div class="input-group">
-            <label for="role">Sign in as</label>
+            <label class="signin-label" for="role">Sign in as</label>
             <select id="role" name="role" required>
                 <option value="">-- Select Role --</option>
                 <option value="user">User</option>
@@ -18,19 +18,19 @@
 
         <!-- Email Input -->
         <div class="input-group">
-            <label for="email">Email Address</label>
+            <label class="signin-label" for="email">Email Address</label>
             <input type="email" id="email" name="email" placeholder="Enter your email" required>
         </div>
 
         <!-- Password Input -->
         <div class="input-group">
-            <label for="password">Password</label>
+            <label class="signin-label" for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Enter your password" required>
         </div>
 
         <!-- Remember Me & Forgot Password -->
         <div class="remember-forgot">
-            <label><input type="checkbox"> Remember me</label>
+            <label class="signin-label"><input type="checkbox"> Remember me</label>
             <a href="#">Forgot password?</a>
         </div>
 
