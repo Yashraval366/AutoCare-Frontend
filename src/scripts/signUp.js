@@ -27,12 +27,14 @@ const registerUser = async () => {
                     document.getElementById("popup").style.display = "none";
                 }
             });    
-        
         } else {
             alert("Error: " + data.message);
         }
     } catch (error) {
         alert("Network Error! Please try again.");
+    }
+    finally {
+        document.getElementById("loading").style.display = "none"; // Ensures loading always disappears
     } 
 };
 
