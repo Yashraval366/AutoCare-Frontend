@@ -16,26 +16,29 @@ const registerUser = async () => {
 
         const data = await response.json();
 
-        if (response.ok) {
+        setTimeout(() => {
+            document.getElementById("loading").style.display = "none";
+
             setTimeout(() => {
-                document.getElementById("loading").style.display = "none";
-                document.getElementById("popup").style.display = "flex";
-            }, 3000);
-        
+                if(response.ok){
+                    document.getElementById("popup").style.display = "flex";
+                    form.reset()
+                }
+                else {
+                    alert("Error: " + data.message);
+                }
+            }, 1000)
+    
+        }, 3000)
+            
             window.addEventListener("click", (event) => {
                 if (event.target === document.querySelector('body')) {
                     document.getElementById("popup").style.display = "none";
                 }
-            });    
-        } else {
-            alert("Error: " + data.message);
-        }
+            }); 
     } catch (error) {
         alert("Network Error! Please try again.");
     }
-    finally {
-        document.getElementById("loading").style.display = "none"; // Ensures loading always disappears
-    } 
 };
 
 document.getElementById("register-form").addEventListener("submit", (event) => {
