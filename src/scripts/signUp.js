@@ -30,12 +30,13 @@ const registerUser = async () => {
             }, 1000)
     
         }, 3000)
-            
-            window.addEventListener("click", (event) => {
-                if (event.target === document.querySelector('body')) {
-                    document.getElementById("popup").style.display = "none";
-                }
-            }); 
+        
+        window.addEventListener("click", (event) => {
+            if (event.target === document.querySelector('body')) {
+                document.getElementById("popup").style.display = "none";
+            }
+        });
+
     } catch (error) {
         alert("Network Error! Please try again.");
     }
@@ -45,3 +46,7 @@ document.getElementById("register-form").addEventListener("submit", (event) => {
     event.preventDefault(); 
     registerUser();
 });
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
