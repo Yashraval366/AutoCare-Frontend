@@ -1,62 +1,92 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     background: #f5f5f5;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: fit-content;
     margin: 0;
+    padding: 20px;
 }
 
+/* Registration Form Container */
 .registration-container {
     background-color: white;
     padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    width: 400px;
+    margin: 20px auto;
+    display: block !important;
+    overflow: visible;
+    visibility: visible;
+    height: fit-content;
 }
 
+/* Headings */
 .registration-container h2 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    font-size: 24px;
+    color: #333;
 }
 
+/* Input Fields */
 .input-field {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
+.input-field:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Submit Button */
 .submit-button {
-    width: 107%;
-    padding: 10px;
+    width: 100%;
+    padding: 12px;
     background: #007bff;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
 }
 
 .submit-button:hover {
     background: #0056b3;
+    transform: scale(1.02);
 }
 
+/* Login Link */
 .login-link {
     text-align: center;
     margin-top: 15px;
+    font-size: 14px;
 }
 
 .login-link a {
     text-decoration: none;
     color: #007BFF;
+    font-weight: bold;
 }
 
 .login-link a:hover {
     text-decoration: underline;
 }
 
+/* Loading Indicator */
 .loading {
     display: none;
     position: fixed;
@@ -70,27 +100,30 @@ body {
     align-items: center;
     gap: 10px;
     z-index: 9999;
+    display: flex;
 }
 
- /* Rotating Spinner */
+/* Rotating Spinner */
 .spinner {
-width: 20px;
-height: 20px;
-border: 3px solid white;
-border-top: 3px solid transparent;
-border-radius: 50%;
-animation: spin 1s linear infinite;
+    width: 30px;
+    height: 30px;
+    border: 3px solid white;
+    border-top: 3px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
 }
 
+/* Popup Message */
 .popup {
     display: none;
     position: fixed;
@@ -101,17 +134,20 @@ animation: spin 1s linear infinite;
     background: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
+    display: flex;
 }
 
 .popup-content {
     background: white;
-    padding: 20px;
+    padding: 30px;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 12px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    width: 350px;
+    width: 400px;
+    max-width: 90%;
 }
 
+/* Success Check Icon */
 .check-icon {
     font-size: 50px;
     color: white;
@@ -125,6 +161,7 @@ animation: spin 1s linear infinite;
     border-radius: 50%;
 }
 
+/* Popup Text */
 h2 {
     color: #333;
     margin: 10px 0;
@@ -135,16 +172,32 @@ p {
     font-size: 14px;
 }
 
+/* Button */
 button {
     background: #007bff;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 20px;
     margin-top: 10px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: background 0.3s, transform 0.2s;
 }
 
 button:hover {
     background: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Responsive Styles */
+@media (max-width: 500px) {
+    .registration-container {
+        width: 100%;
+        padding: 30px;
+    }
+
+    .popup-content {
+        width: 90%;
+    }
 }

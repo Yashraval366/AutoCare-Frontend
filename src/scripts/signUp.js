@@ -1,52 +1,95 @@
+document.addEventListener("DOMContentLoaded", function () {
+    const loading = document.getElementById("loading");
+    const popup = document.getElementById("popup");
+
+    if (loading) loading.style.display = "none";
+    if (popup) popup.style.display = "none";
+
+    const form = document.getElementById("register-form");
+    if (form) {
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            registerUser();
+        });
+    }
+
+    if (popup) {
+        popup.addEventListener("click", (event) => {
+            if (event.target === popup) {
+                closePopup();
+            }
+        });
+    }
+});
+
 const registerUser = async () => {
     const form = document.getElementById("register-form");
-    const formData = new FormData(form);
-    const jsonData = Object.fromEntries(formData.entries());
+    if (!form) {
+        alert("Form not found!");
+        return;
+    }
 
-    document.getElementById("loading").style.display = "flex";
+    const formData = new FormData(form);
+
+
+    // Append required fields
+    formData.set("role", document.getElementById('role').value);
+    formData.set("username", document.getElementById('username').value);
+    formData.set("email", document.getElementById('email').value);
+    formData.set("password", document.getElementById('password').value);
+    formData.set("phone", document.getElementById('phone').value);
+    formData.set("gender", document.getElementById('gender').value);
+    formData.set("city", document.getElementById('city').value);
+
+    // If role is 'garageowner', append garage-related fields
+    if(document.getElementById('role').value === "garageowner") {
+        formData.set("garage_name", document.getElementById('garage_name').value);
+        formData.set("garage_location", document.getElementById('garage_location').value);
+        formData.set("garage_contact", document.getElementById('garage_contact').value);
+        formData.set("garage_email", document.getElementById('garage_email').value);
+
+        const garageImage = document.getElementById('garage_image').files[0];
+        if (garageImage) {
+            formData.set("garage_image", garageImage);
+        }
+    }
+
+    // Debugging logs
+    console.log("Submitting FormData:", Object.fromEntries(formData.entries()));
+
+    // Show loading animation
+    const loading = document.getElementById("loading");
+    if (loading) loading.style.display = "flex";
 
     try {
         const response = await fetch("http://localhost:5001/api/users/register", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(jsonData)
+            body: formData,
         });
 
         const data = await response.json();
 
+        // Hide loading after 3 seconds
         setTimeout(() => {
-            document.getElementById("loading").style.display = "none";
+            if (loading) loading.style.display = "none";
 
             setTimeout(() => {
-                if(response.ok){
-                    document.getElementById("popup").style.display = "flex";
-                    form.reset()
+                if (response.ok) {
+                    const popup = document.getElementById("popup");
+                    if (popup) popup.style.display = "flex";
+                    form.reset();
+                } else {
+                    alert("Error: " + (data.message || "Something went wrong"));
                 }
-                else {
-                    alert("Error: " + data.message);
-                }
-            }, 1000)
-    
-        }, 3000)
-        
-        window.addEventListener("click", (event) => {
-            if (event.target === document.querySelector('body')) {
-                document.getElementById("popup").style.display = "none";
-            }
-        });
-
+            }, 1000);
+        }, 3000);
     } catch (error) {
+        if (loading) loading.style.display = "none";
         alert("Network Error! Please try again.");
     }
 };
 
-document.getElementById("register-form").addEventListener("submit", (event) => {
-    event.preventDefault(); 
-    registerUser();
-});
-
 function closePopup() {
-    document.getElementById("popup").style.display = "none";
+    const popup = document.getElementById("popup");
+    if (popup) popup.style.display = "none";
 }
