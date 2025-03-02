@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garage Information Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .form-container h2 {
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Garage Information</h2>
+        <form action="#" method="POST" enctype="multipart/form-data">
+            <label for="garage-name">Garage Name:</label>
+            <input type="text" id="garage-name" name="garage_name" required>
+            
+            <label for="owner-name">Owner Name:</label>
+            <input type="text" id="owner-name" name="owner_name" required>
+            
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" required>
+            
+            <label for="contact">Contact Number:</label>
+            <input type="tel" id="contact" name="contact" required>
+            
+            <label for="email">Owner Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="image">Garage Image:</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
