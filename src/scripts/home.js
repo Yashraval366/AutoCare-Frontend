@@ -56,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const formData = new FormData(form);
             const jsonData = Object.fromEntries(formData.entries());
 
+
             const response = await fetch("http://localhost:5001/api/users/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -63,15 +64,24 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             const data = await response.json();
+            localStorage.setItem("authToken", data.token);
+            localStorage.setItem("userRole", jsonData.role); 
 
             if (!response.ok) throw new Error(data.message || "Login failed");
 
             alert("Login successfully");
 
-            localStorage.setItem("authToken", data.token);
-            localStorage.setItem("userRole", jsonData.role); 
+            const tokenPayload = JSON.parse(atob(data.token.split(".")[1]));
 
-            console.log(data.token, jsonData.role)
+            console.log("Decoded Token: ",tokenPayload)
+
+            if(jsonData.role === "garageowner") {
+                window.location.href = "./pages/garagedashboard.html";
+                console.log(data.token, jsonData.role)
+            } else {
+                window.location.href = "#"
+            }
+
             
             updateUI();
             form.reset();

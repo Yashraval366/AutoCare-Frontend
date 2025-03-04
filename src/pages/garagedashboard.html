@@ -16,15 +16,15 @@
 <body>
     <div class="dashboard">
         <aside class="sidebar">
-            <h2>Garage Admin</h2>
+            <h2 id="garage-title">Garage Admin</h2>
             <nav>
                 <ul>
                     <li><a href="#" onclick="showSection('dashboard')"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
-                    <li><a href="#" onclick="showSection('bookings')"><i class="fas fa-calendar-check"></i> Bookings</a></li>
-                    <li><a href="#" onclick="showSection('customers')"><i class="fas fa-users"></i> Customers</a></li>
-                    <li><a href="#" onclick="showSection('services')"><i class="fas fa-tools"></i> Services</a></li>
-                    <li><a href="#" onclick="showSection('report')"><i class="fas fa-chart-line"></i> Reports</a></li>
-                    <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    <li><a href="#" onclick="showSection('bookings')"><i class="fas fa-calendar-check"></i>Bookings</a></li>
+                    <li><a href="#" onclick="showSection('edit-garage-info')"><i class="fas fa-edit"></i>Edit Garage Info</a></li>
+                    <li><a href="#" onclick="showSection('services')"><i class="fas fa-tools"></i>Services</a></li>
+                    <li><a href="#" onclick="showSection('report')"><i class="fas fa-chart-line"></i>Reports</a></li>
+                    <li id="logout"><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                 </ul>
             </nav>
         </aside>
@@ -38,10 +38,9 @@
             </header>
             <section>
                 <section class="stats">
-                    <div class="card">Total Bookings: <strong>120</strong></div>
-                    <div class="card">Pending Services: <strong>15</strong></div>
-                    <div class="card">Completed Services: <strong>95</strong></div>
-                    <div class="card">Revenue: <strong>$5000</strong></div>
+                    <div class="card">Total Bookings: <strong>0</strong></div>
+                    <div class="card">Pending Services: <strong>0</strong></div>
+                    <div class="card">Completed Services: <strong>0</strong></div>
                 </section>
                 <section id="report-section" class="hidden">
                     <div class="row">

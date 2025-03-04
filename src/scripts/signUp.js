@@ -31,8 +31,6 @@ const registerUser = async () => {
 
     const formData = new FormData(form);
 
-
-    // Append required fields
     formData.set("role", document.getElementById('role').value);
     formData.set("username", document.getElementById('username').value);
     formData.set("email", document.getElementById('email').value);
@@ -41,7 +39,6 @@ const registerUser = async () => {
     formData.set("gender", document.getElementById('gender').value);
     formData.set("city", document.getElementById('city').value);
 
-    // If role is 'garageowner', append garage-related fields
     if(document.getElementById('role').value === "garageowner") {
         formData.set("garage_name", document.getElementById('garage_name').value);
         formData.set("garage_location", document.getElementById('garage_location').value);
@@ -54,10 +51,9 @@ const registerUser = async () => {
         }
     }
 
-    // Debugging logs
     console.log("Submitting FormData:", Object.fromEntries(formData.entries()));
 
-    // Show loading animation
+
     const loading = document.getElementById("loading");
     if (loading) loading.style.display = "flex";
 
@@ -69,7 +65,6 @@ const registerUser = async () => {
 
         const data = await response.json();
 
-        // Hide loading after 3 seconds
         setTimeout(() => {
             if (loading) loading.style.display = "none";
 
