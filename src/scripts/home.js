@@ -9,35 +9,31 @@ document.addEventListener("DOMContentLoaded", () => {
     signInBtn.addEventListener("click", loadSignInForm);
 
     function loadSignInForm() {
-    fetch("/new-project/src/pages/signIn.html")
+    fetch("./pages/signIn.html")
         .then(response => response.text())
         .then(html => {
             signInPlaceholder.innerHTML = html;
 
-            const observer = new MutationObserver(() => {
-                const signInContainer = document.getElementById("signin-container");
-                if (signInContainer) {
-                    observer.disconnect(); 
+            const signInContainer = document.getElementById("signin-container");
+            if (signInContainer) {
 
-                    const closeSignIn = document.getElementById("close-signin");
+                const closeSignIn = document.getElementById("close-signin");
 
-                    signInContainer.classList.remove("fade-out");
-                    signInContainer.classList.add("fade-in");
-                    signInContainer.style.display = "flex"; 
+                signInContainer.classList.remove("fade-out");
+                signInContainer.classList.add("fade-in");
+                signInContainer.style.display = "flex"; 
 
-                    loginHandler();
+                loginHandler();
 
-                    closeSignIn.addEventListener("click", () => closeSignInForm(signInContainer));
+                closeSignIn.addEventListener("click", () => closeSignInForm(signInContainer));
 
-                    window.addEventListener("click", (event) => {
-                        if (event.target === signInContainer) {
-                            closeSignInForm(signInContainer);
-                        }
-                    });
-                }
-            });
+                window.addEventListener("click", (event) => {
+                    if (event.target === signInContainer) {
+                        closeSignInForm(signInContainer);
+                    }
+                });
+            }
 
-            observer.observe(signInPlaceholder, { childList: true, subtree: true });
         })
         .catch(error => console.error("Error loading sign-in form:", error));
 }
