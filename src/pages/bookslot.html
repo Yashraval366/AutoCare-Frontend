@@ -2,6 +2,9 @@
     <div class="form-container">
         <span class="close-btn" id="close-bookslot">&times;</span>
         <form>
+            <label for="garage-name">Selected Garage</label>
+            <input type="text" id="garage-name" name="garage-name" readonly>
+
             <label for="name">Name</label>
             <input type="text" id="name" name="name" placeholder="Enter your name" required>
 
@@ -21,7 +24,6 @@
                 <input type="time" id="time" name="time" required>
             </div>
 
-            <!-- Services Dropdown -->
             <label for="services">Select Service</label>
             <select id="services" name="services" onchange="showServiceOptions()">
                 <option value="">-- Select Service --</option>
@@ -32,7 +34,6 @@
                 <option value="other">Other Services</option>
             </select>
 
-            <!-- Checkboxes for multiple service selection -->
             <div id="service-options" class="services-checkboxes">
                 <label><input type="checkbox" name="service_options" value="general"> General Service</label>
                 <label><input type="checkbox" name="service_options" value="oil"> Oil Change</label>
@@ -40,11 +41,7 @@
                 <label><input type="checkbox" name="service_options" value="tire"> Tire Replacement</label>
                 <label><input type="checkbox" name="service_options" value="other"> Other Services</label>
             </div>
-
-            <label for="vehicle">Vehicle Model</label>
-            <input placeholder="Enter your vehicle model" type="text" id="vehicle" name="vehicle" required>
-
-            <button type="submit">Submit</button>
+            <button type="submit" style="background-color:#007bff;" >Submit</button>
         </form>
     </div>
 </div>

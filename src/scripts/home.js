@@ -4,10 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const profileDropdown = document.getElementById("profile-dropdown");
     const profileBtn = document.getElementById("profile-btn");
     const dropdownMenu = document.getElementById("dropdownMenu");
-    const bookbtns = document.querySelectorAll(".book-btn"); 
-    const bookslotPlaceholder = document.getElementById("bookslot-placeholder");
+    let bookslot;
 
-    // Load the sign-in form
     signInBtn.addEventListener("click", loadSignInForm);
 
     function loadSignInForm() {
@@ -111,7 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (!response.ok) throw new Error("Invalid token");
 
-            // If token is valid, show profile dropdown
             signInBtn.style.display = "none"; 
             profileDropdown.style.display = "inline-block";
 
@@ -161,54 +158,133 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateUI();
 
-    // Check token validity every 5 minutes
     setInterval(checkAuth, 5 * 60 * 1000);
 
+    const getgaragesInfo = async () => {
 
-    bookbtns.forEach((bookbtn) => {
-        bookbtn.addEventListener("click", () => {
-            fetch("../src/pages/bookslot.html")
-                .then(response => response.text())
-                .then(html => {
-                    bookslotPlaceholder.innerHTML = html; 
+        const garagesContainer = document.getElementById('garage-list')
+        try {
+            const response = await fetch('http://localhost:5001/api/garages/garagesinfo')
+            const data  = await response.json()
 
-                    const bookslotContainer = document.getElementById("modal-container");
-                    const closeBookslot = document.getElementById("close-bookslot");
-           
-                    bookslotContainer.classList.remove("fade-out")
-                    bookslotContainer.classList.add("fade-in")
-                    bookslotContainer.style.display = "flex";
+            console.log(data)
+            const getdata = data.Garages
 
-                    closeBookslot.addEventListener("click", () => {
-                        bookslotContainer.classList.remove("fade-in")
-                        bookslotContainer.classList.add("fade-out")
-                        setTimeout(() => {
-                            bookslotContainer.style.display = "none";
-                        },500)
-                    });
+            getdata.forEach((data) => {
+                const garageCard = document.createElement('div')
+                garageCard.setAttribute("class","garage-card")
 
-                    window.addEventListener("click", (event) => {
-                        if (event.target === bookslotContainer) {
-                            bookslotContainer.classList.remove("fade-in")
-                            bookslotContainer.classList.add("fade-out")
-                            setTimeout(() => {
-                                bookslotContainer.style.display = "none";
-                            },500)
-                        }
-                    });
+                const garageImg = document.createElement('img')
+                garageImg.setAttribute("class","garage-image")
+                garageImg.src = `http://localhost:5001${data.garage_image}`
 
-                    function showServiceOptions() {
-                        const serviceDropdown = document.getElementById("services");
-                        const serviceOptions = document.getElementById("service-options");
+                const garageName = document.createElement('h3')
+                garageName.setAttribute("class","garage-name")
+                garageName.innerHTML = data.garage_name
 
-                        if (serviceDropdown.value !== "") {
-                            serviceOptions.style.display = "block";
-                        } else {
-                            serviceOptions.style.display = "none";
-                        }
+                const locationContainer = document.createElement('div')
+                locationContainer.setAttribute("class","label-container")
+                const locationLabel = document.createElement('label')
+                locationLabel.setAttribute("class","locationlabel")
+                locationLabel.innerHTML = "Location :"
+                const garagelocation = document.createElement('p')
+                garagelocation.setAttribute("class","garage-location")
+                garagelocation.innerHTML = data.garage_location
+
+                locationContainer.appendChild(locationLabel)
+                locationContainer.appendChild(garagelocation)
+
+                const queueContainer = document.createElement('div')
+                queueContainer.setAttribute("class","label-container")
+                const queuelabel = document.createElement('label')
+                queuelabel.setAttribute("class","queuelabel")
+                queuelabel.innerHTML = "Queue :"
+                const queue = document.createElement('div')
+                queue.setAttribute("class","queue")
+                const dot = document.createElement("span")
+                dot.setAttribute("class","dot")
+                for(let i=0; i <= 2; i++){
+                    queue.appendChild(dot)
+                }
+
+                queueContainer.appendChild(queuelabel)
+                queueContainer.appendChild(queue)
+
+                bookslot = document.createElement('button')
+                bookslot.setAttribute("class", "book-btn")
+                bookslot.classList.add("open-bookbtn")
+                bookslot.innerHTML = "Book slot"
+
+                garageCard.appendChild(garageImg)
+                garageCard.appendChild(garageName)
+                garageCard.appendChild(locationContainer)
+                garageCard.appendChild(queueContainer)
+                garageCard.appendChild(bookslot)
+
+                garageCard.dataset.garageId = data.id; 
+                garageCard.dataset.garageName = data.garage_name; 
+
+                bookslot.onclick = () => openBookSlot(data.id, data.garage_name);
+
+                garagesContainer.appendChild(garageCard)
+            })
+        } catch(err) {
+            garagesContainer.innerHTML = "No Data Found"
+            console.log("error: ",err)
+        }
+    }  
+    getgaragesInfo()
+
+    function openBookSlot(garageId, garageName) {
+        const bookslotPlaceholder = document.getElementById("bookslot-placeholder");
+
+        fetch("../src/pages/bookslot.html")
+            .then(response => response.text())
+            .then(html => {
+                bookslotPlaceholder.innerHTML = html; 
+                
+                const bookslotContainer = document.getElementById("modal-container");
+                const closeBookslot = document.getElementById("close-bookslot");
+
+                const garageNameInput = document.getElementById("garage-name");
+                if (garageNameInput) {
+                    garageNameInput.value = garageName;
+                    garageNameInput.setAttribute("data-garage-id", garageId);
+                }
+
+                if (bookslotContainer.classList.contains("fade-in")) return;
+
+                bookslotContainer.style.display = "flex";
+                setTimeout(() => bookslotContainer.classList.add("fade-in"), 10);
+
+                closeBookslot?.addEventListener("click", () => closeModal(bookslotContainer));
+
+                window.addEventListener("click", (event) => {
+                    if (event.target === bookslotContainer) closeModal(bookslotContainer);
+                });
+
+                function showServiceOptions() {
+                    const serviceDropdown = document.getElementById("services");
+                    const serviceOptions = document.getElementById("service-options");
+
+                    if (serviceDropdown.value !== "") {
+                        serviceOptions.style.display = "block";
+                    } else {
+                        serviceOptions.style.display = "none";
                     }
-                })
-                .catch(error => console.error("Error loading book slot form:", error));
-        });
-    });
+                }
+                
+            })
+        .catch(error => console.error("Error loading book slot form:", error));
+    }
+
+
+    function closeModal(modal) {
+        modal.classList.remove("fade-in");
+        modal.classList.add("fade-out");
+        setTimeout(() => {
+            modal.style.display = "none";
+            modal.classList.remove("fade-out");
+        }, 1000);
+    }
 });
