@@ -243,7 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function openBookSlot(garageId, garageName) {
         const bookslotPlaceholder = document.getElementById("bookslot-placeholder");
 
-        fetch("/new-project/src/pages/bookslot.html")
+        fetch("./pages/bookslot.html")
             .then(response => response.text())
             .then(html => {
                 bookslotPlaceholder.innerHTML = html; 
