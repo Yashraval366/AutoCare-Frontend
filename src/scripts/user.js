@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+    console.log("user code executed")
     const token = localStorage.getItem('authToken')
 
     console.log(token)

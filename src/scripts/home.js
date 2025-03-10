@@ -260,7 +260,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (bookslotContainer.classList.contains("fade-in")) return;
 
                 bookslotContainer.style.display = "flex";
-                setTimeout(() => bookslotContainer.classList.add("fade-in"), 10);
 
                 closeBookslot?.addEventListener("click", () => closeModal(bookslotContainer));
 
