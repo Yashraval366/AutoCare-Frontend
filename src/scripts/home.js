@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     signInBtn.addEventListener("click", loadSignInForm);
 
     function loadSignInForm() {
-        fetch("/new-project/src/pages/signIn.html")
+        fetch("pages/signIn.html")
             .then(response => response.text())
             .then(html => {
                 signInPlaceholder.innerHTML = html;
