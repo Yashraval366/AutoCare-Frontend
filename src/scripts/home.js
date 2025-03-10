@@ -9,29 +9,38 @@ document.addEventListener("DOMContentLoaded", () => {
     signInBtn.addEventListener("click", loadSignInForm);
 
     function loadSignInForm() {
-        fetch("/new-project/src/pages/signIn.html")
-            .then(response => response.text())
-            .then(html => {
-                signInPlaceholder.innerHTML = html;
+    fetch("/new-project/src/pages/signIn.html")
+        .then(response => response.text())
+        .then(html => {
+            signInPlaceholder.innerHTML = html;
+
+            const observer = new MutationObserver(() => {
                 const signInContainer = document.getElementById("signin-container");
-                const closeSignIn = document.getElementById("close-signin");
+                if (signInContainer) {
+                    observer.disconnect(); 
 
-                signInContainer.classList.remove("fade-out");
-                signInContainer.classList.add("fade-in");
-                signInContainer.style.display = "flex"; 
+                    const closeSignIn = document.getElementById("close-signin");
 
-                loginHandler();
+                    signInContainer.classList.remove("fade-out");
+                    signInContainer.classList.add("fade-in");
+                    signInContainer.style.display = "flex"; 
 
-                closeSignIn.addEventListener("click", () => closeSignInForm(signInContainer));
+                    loginHandler();
 
-                window.addEventListener("click", (event) => {
-                    if (event.target === signInContainer) {
-                        closeSignInForm(signInContainer);
-                    }
-                });
-            })
-            .catch(error => console.error("Error loading sign-in form:", error));
-    }
+                    closeSignIn.addEventListener("click", () => closeSignInForm(signInContainer));
+
+                    window.addEventListener("click", (event) => {
+                        if (event.target === signInContainer) {
+                            closeSignInForm(signInContainer);
+                        }
+                    });
+                }
+            });
+
+            observer.observe(signInPlaceholder, { childList: true, subtree: true });
+        })
+        .catch(error => console.error("Error loading sign-in form:", error));
+}
 
     function closeSignInForm(container) {
         container.classList.remove("fade-in");
