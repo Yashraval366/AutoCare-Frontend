@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     signInBtn.addEventListener("click", loadSignInForm);
 
     function loadSignInForm() {
-        fetch("../src/pages/signIn.html")
+        fetch("/new-project/src/pages/signIn.html")
             .then(response => response.text())
             .then(html => {
                 signInPlaceholder.innerHTML = html;
@@ -238,7 +238,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function openBookSlot(garageId, garageName) {
         const bookslotPlaceholder = document.getElementById("bookslot-placeholder");
 
-        fetch("../src/pages/bookslot.html")
+        fetch("/new-project/src/pages/bookslot.html")
             .then(response => response.text())
             .then(html => {
                 bookslotPlaceholder.innerHTML = html; 
