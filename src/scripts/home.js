@@ -273,7 +273,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 function showServiceOptions() {
                     const serviceDropdown = document.getElementById("services");
                     const serviceOptions = document.getElementById("service-options");
-
                     if (serviceDropdown.value !== "") {
                         serviceOptions.style.display = "block";
                     } else {
