@@ -19,11 +19,11 @@
             <h2 id="garage-title">Garage Admin</h2>
             <nav>
                 <ul>
-                    <li><a href="#" onclick="showSection('dashboard')"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
-                    <li><a href="#" onclick="showSection('bookings')"><i class="fas fa-calendar-check"></i>Bookings</a></li>
-                    <li><a href="#" onclick="showSection('edit-garage-info')"><i class="fas fa-edit"></i>Edit Garage Info</a></li>
-                    <li><a href="#" onclick="showSection('services')"><i class="fas fa-tools"></i>Services</a></li>
-                    <li><a href="#" onclick="showSection('report')"><i class="fas fa-chart-line"></i>Reports</a></li>
+                    <li><a href="#" onclick="showSection('dashboard')"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="#" onclick="showSection('bookings')"><i class="fas fa-calendar-check"></i> Bookings</a></li>
+                    <li><a href="#" onclick="showSection('profile')"><i class="fas fa-user"></i> Garage Profile</a></li>
+                    <li><a href="#" onclick="showSection('edit-garage-info')"><i class="fas fa-edit"></i> Edit Garage Info</a></li>
+                    <li><a href="#" onclick="showSection('report')"><i class="fas fa-chart-line"></i> Reports</a></li>
                     <li id="logout"><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                 </ul>
             </nav>
@@ -36,157 +36,123 @@
                     <span>Admin</span>
                 </div>
             </header>
-            <section>
-                <section class="stats">
-                    <div class="card">Total Bookings: <strong>0</strong></div>
-                    <div class="card">Pending Services: <strong>0</strong></div>
-                    <div class="card">Completed Services: <strong>0</strong></div>
-                </section>
-                <section id="report-section" class="hidden">
-                    <div class="row">
-                        <div class="col-12">
-                            <h4>Bookings per Shop</h4>
-                            <canvas id="bookingChart" width="400" height="200"></canvas>
-                        </div>
-                    </div>
-                </section>
-                <section class="table-section" id="dashboard-section">
-                    <h2>Recent Bookings</h2>
-                    <table id="mytable">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Customer</th>
-                                <th>Vehicle</th>
-                                <th>Service</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>001</td>
-                                <td>Yash</td>
-                                <td>Toyota Corolla</td>
-                                <td>Oil Change</td>
-                                <td>Feb 15, 2025</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <td>002</td>
-                                <td>Jeet</td>
-                                <td>Honda Civic</td>
-                                <td>Tire Rotation</td>
-                                <td>Feb 14, 2025</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <td>003</td>
-                                <td>Vaishnavi</td>
-                                <td>Ford Focus</td>
-                                <td>Brake Inspection</td>
-                                <td>Feb 13, 2025</td>
-                                <td><span class="status completed">Completed</span></td>
-                            </tr>
-                            <tr>
-                                <td>004</td>
-                                <td>Preet</td>
-                                <td>Ford Focus</td>
-                                <td>Brake Inspection</td>
-                                <td>Feb 13, 2025</td>
-                                <td><span class="status cancelled">Cancelled</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section>
+            <section class="stats">
+                <div class="card">
+                    <h3>Total Bookings: <strong id="totalBookings">0</strong></h3>
+                </div>
+                <div class="card">
+                    <h3>Pending Services: <strong id="pendingServices">0</strong></h3>
+                </div>
+                <div class="card">
+                    <h3>Completed Services: <strong id="completedServices">0</strong></h3>
+                </div>
+            </section>
+            <section class="table-section" id="dashboard-section">
+                <h2>Recent Bookings</h2>
+                <div class="table-container">
+                    <table id="mytable"></table>
+                </div>
             </section>
             <section id="bookings-section" class="hidden">
                 <h2>All Bookings</h2>
-                <table id="alldata">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Customer</th>
-                            <th>Vehicle</th>
-                            <th>Service</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>001</td>
-                            <td>Yash</td>
-                            <td>Toyota Corolla</td>
-                            <td>Oil Change</td>
-                            <td>Feb 15, 2025</td>
-                            <td><span class="status pending">Pending</span></td>
-                        </tr>
-                        <tr>
-                            <td>002</td>
-                            <td>Jeet</td>
-                            <td>Honda Civic</td>
-                            <td>Tire Rotation</td>
-                            <td>Feb 14, 2025</td>
-                            <td><span class="status pending">Pending</span></td>
-                        </tr>
-                        <tr>
-                            <td>003</td>
-                            <td>Vaishnavi</td>
-                            <td>Ford Focus</td>
-                            <td>Brake Inspection</td>
-                            <td>Feb 13, 2025</td>
-                            <td><span class="status completed">Completed</span></td>
-                        </tr>
-                        <tr>
-                            <td>003</td>
-                            <td>Preet</td>
-                            <td>Ford Focus</td>
-                            <td>Brake Inspection</td>
-                            <td>Feb 13, 2025</td>
-                            <td><span class="status cancelled">Cancelled</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-container">
+                    <table id="alldata"></table>
+                </div>
+            </section>
+            <section class="garage-profile-container hidden" id="profile-section">
+                <div class="garage-profile-header">
+                    <img id ="garage-image" src="../images/1.contact.jpg" alt="Garage Logo" class="profile-image">
+                    <h2 id="garage-name">yashdev garage</h2>
+                    <p id="garage-address">default location</p>
+                    <p id="garage-contact">📞 +91 0101010101</p>
+                </div>
+            
+                <div class="garage-details">
+                    <h3>Garage Information</h3>
+                    <div class="detail-row">
+                        <span class="detail-label">Owner:</span>
+                        <span id="garage-owner" class="detail-value">yash dev</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Email:</span>
+                        <span id="garage-email" class="detail-value">example@email.com</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Services Offered:</span>
+                        <span id="garage-services" class="detail-value">Oil Change, Tire Replacement, Engine Repair</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Operating Hours:</span>
+                        <span id="garage-hours" class="detail-value">Mon-Sat, 9 AM - 7 PM</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Ratings:</span>
+                        <span id="garage-ratings" class="detail-value">⭐⭐⭐⭐⭐ (4.8/5)</span>
+                    </div>
+                </div>
+            </section>
+            <section class="garage-edit-container hidden" id="edit-garage-info-section">
+                <h2>Edit Garage Information</h2>
+            
+                <div class="garage-edit-header">
+                    <img id="profile-image" alt="Garage Logo" class="profile-image">
+                    <h2 id="edit-garage-title">Elite Auto Care</h2>
+                </div>
+            
+                <div class="garage-edit-form">
+                    <div class="form-group">
+                        <label for="edit-garage-name">Garage Name</label>
+                        <input type="name" id="edit-garage-name" readonly>
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="edit-garage-address">Location</label>
+                        <input type="text" name="garage_location" id="edit-garage-location">
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="edit-garage-contact">Contact</label>
+                        <input type="number" name="garage_contact" id="edit-garage-contact">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-garage-email">Email</label>
+                        <input type="email" name="garage_email" id="edit-garage-email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-garage-image">Garage Image</label>
+                        <input class="input-field" type="file" name="garage_image" id="edit-garage-image" accept="image/*">
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button class="save-btn" id="submitInfo">Save Changes</button>
+                        <button class="cancel-btn" onclick="showSection('profile')">Cancel</button>
+                    </div>
+                </div>
             </section>
         </main>
     </div>
     <script>
-        var ctx = document.getElementById('bookingChart').getContext('2d');
-            var bookingChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Shop 1', 'Shop 2', 'Shop 3', 'Shop 4', 'Shop 5'],
-                    datasets: [{
-                        label: 'Slots Booked',
-                        data: [23, 5, 15, 25, 13],
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        function showSection(section) {
-            document.getElementById("dashboard-section").classList.add("hidden");
-            document.getElementById("bookings-section").classList.add("hidden");
-            document.getElementById("report-section").classList.add("hidden")
+       function showSection(section) {
+            const sections = ["dashboard-section", "bookings-section", "profile-section", "edit-garage-info-section"];
+            const topbar = document.querySelector(".topbar");
+            const stats = document.querySelector(".stats");
 
-            if (section === "dashboard") {
-                document.getElementById("dashboard-section").classList.remove("hidden");
-            }
-            else if (section === "bookings") {
-                document.getElementById("bookings-section").classList.remove("hidden");
-            }
-            else if (section === "report") {
-                document.getElementById("report-section").classList.remove("hidden");
-                document.getElementById("bookings-section").classList.remove("hidden");
+            sections.forEach(id => {
+                let el = document.getElementById(id);
+                if (el) el.classList.add("hidden");
+            });
+
+            let selectedSection = document.getElementById(section + "-section");
+            if (selectedSection) selectedSection.classList.remove("hidden");
+
+            if (section === "profile" || section === "edit-garage-info") {
+                topbar.classList.add("hidden");
+                stats.classList.add("hidden");
+            } else {
+                topbar.classList.remove("hidden");
+                stats.classList.remove("hidden");
             }
         }
     </script>

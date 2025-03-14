@@ -296,7 +296,7 @@ document.addEventListener("DOMContentLoaded", () => {
         formData.set("garage_id", gid);
         formData.set("garage_name", document.getElementById('garage-name').value);
         formData.set("name", document.getElementById('name').value);
-        formData.set("number", document.getElementById('number').value);
+        formData.set("email", document.getElementById('email').value);
         formData.set("date", document.getElementById('date').value);
         formData.set("time", document.getElementById('time').value);
         formData.set("service", document.getElementById('services').value);
@@ -313,12 +313,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const data = await response.json();
 
-        console.log(data)
+        console.log(data.message)
 
-        if (!response.ok) throw new Error(data.message || "something went wrong pls try again");
+        if(!response.ok) throw new Error(data.message || "something went wrong pls try again");
 
-        alert("booked slot successfully");
+        alert('Bookslot Successfully')
 
+        if(response.ok){
+            form.reset();
+        }
     }
 
 
@@ -328,7 +331,6 @@ document.addEventListener("DOMContentLoaded", () => {
             await dataIntobookslot();
         });
     }
-
 
     function closeModal(modal) {
         modal.classList.remove("fade-in");
