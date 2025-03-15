@@ -8,80 +8,81 @@ document.addEventListener("DOMContentLoaded", () => {
 
     signInBtn.addEventListener("click", loadSignInForm);
 
-        const getgaragesInfo = async () => {
+    const getgaragesInfo = async () => {
+        const garagesContainer = document.getElementById('garage-list');
 
-        const garagesContainer = document.getElementById('garage-list')
         try {
-            const response = await fetch('http://localhost:5001/api/garages/garagesinfo')
-            const data  = await response.json()
+            const response = await fetch('http://localhost:5001/api/garages/garagesinfo');
+            const data = await response.json();
 
-            console.log(data)
-            const getdata = data.Garages
+            console.log(data);
+            const garages = data.Garages;
 
-            getdata.forEach((data) => {
-                const garageCard = document.createElement('div')
-                garageCard.setAttribute("class","garage-card")
+            garagesContainer.innerHTML = ""; 
 
-                const garageImg = document.createElement('img')
-                garageImg.setAttribute("class","garage-image")
-                garageImg.src = `http://localhost:5001${data.garage_image}`
+            garages.forEach((garage) => {
+                const garageCard = document.createElement('div');
+                garageCard.setAttribute("class", "garage-card");
 
-                const garageName = document.createElement('h3')
-                garageName.setAttribute("class","garage-name")
-                garageName.innerHTML = data.garage_name
+                const garageImg = document.createElement('img');
+                garageImg.setAttribute("class", "garage-image");
+                garageImg.src = `http://localhost:5001${garage.garage_image}`;
 
-                const locationContainer = document.createElement('div')
-                locationContainer.setAttribute("class","label-container")
-                const locationLabel = document.createElement('label')
-                locationLabel.setAttribute("class","locationlabel")
-                locationLabel.innerHTML = "Location :"
-                const garagelocation = document.createElement('p')
-                garagelocation.setAttribute("class","garage-location")
-                garagelocation.innerHTML = data.garage_location
+                const garageName = document.createElement('h3');
+                garageName.setAttribute("class", "garage-name");
+                garageName.innerHTML = garage.garage_name;
 
-                locationContainer.appendChild(locationLabel)
-                locationContainer.appendChild(garagelocation)
+                
+                const locationContainer = document.createElement('div');
+                locationContainer.setAttribute("class", "label-container");
+                const locationLabel = document.createElement('label');
+                locationLabel.setAttribute("class", "locationlabel");
+                locationLabel.innerHTML = "Location:";
+                const garagelocation = document.createElement('p');
+                garagelocation.setAttribute("class", "garage-location");
+                garagelocation.innerHTML = garage.garage_location;
+                locationContainer.appendChild(locationLabel);
+                locationContainer.appendChild(garagelocation);
 
-                const queueContainer = document.createElement('div')
-                queueContainer.setAttribute("class","label-container")
-                const queuelabel = document.createElement('label')
-                queuelabel.setAttribute("class","queuelabel")
-                queuelabel.innerHTML = "Queue :"
-                const queue = document.createElement('div')
-                queue.setAttribute("class","queue")
-                const dot = document.createElement("span")
-                dot.setAttribute("class","dot")
-                for(let i=0; i <= 2; i++){
-                    queue.appendChild(dot)
+            
+                const queueContainer = document.createElement('div');
+                queueContainer.setAttribute("class", "label-container");
+                const queuelabel = document.createElement('label');
+                queuelabel.setAttribute("class", "queuelabel");
+                queuelabel.innerHTML = "Queue:";
+                const queue = document.createElement('div');
+                queue.setAttribute("class", "queue");
+
+                for (let i = 0; i < garage.queue_count; i++) {
+                    const dot = document.createElement("span");
+                    dot.setAttribute("class", "dot");
+                    queue.appendChild(dot);
                 }
 
-                queueContainer.appendChild(queuelabel)
-                queueContainer.appendChild(queue)
+                queueContainer.appendChild(queuelabel);
+                queueContainer.appendChild(queue);
 
-                bookslot = document.createElement('button')
-                bookslot.setAttribute("class", "book-btn")
-                bookslot.classList.add("open-bookbtn")
-                bookslot.innerHTML = "Book slot"
+                const bookslot = document.createElement('button');
+                bookslot.setAttribute("class", "book-btn open-bookbtn");
+                bookslot.innerHTML = "Book slot";
+                bookslot.onclick = () => openBookSlot(garage.id, garage.garage_name);
 
-                garageCard.appendChild(garageImg)
-                garageCard.appendChild(garageName)
-                garageCard.appendChild(locationContainer)
-                garageCard.appendChild(queueContainer)
-                garageCard.appendChild(bookslot)
+                garageCard.appendChild(garageImg);
+                garageCard.appendChild(garageName);
+                garageCard.appendChild(locationContainer);
+                garageCard.appendChild(queueContainer);
+                garageCard.appendChild(bookslot);
 
-                garageCard.dataset.garageId = data.id; 
-                garageCard.dataset.garageName = data.garage_name; 
+                garagesContainer.appendChild(garageCard);
+            });
 
-                bookslot.onclick = () => openBookSlot(data.id, data.garage_name);
-
-                garagesContainer.appendChild(garageCard)
-            })
-        } catch(err) {
-            garagesContainer.innerHTML = "No Data Found"
-            console.log("error: ",err)
+        } catch (err) {
+            garagesContainer.innerHTML = "No Data Found";
+            console.log("Error: ", err);
         }
-    }  
-    getgaragesInfo()
+    };
+
+    getgaragesInfo();
 
     function loadSignInForm() {
     fetch("./pages/signIn.html")
@@ -288,15 +289,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     async function dataIntobookslot() {
+        const token = localStorage.getItem("authToken");
         const form = document.getElementById('bookslot-form')
         const formData = new FormData(form);
+
+        if(!token){
+            alert("please SignIn first!")
+        }
 
         gid = localStorage.getItem("garage-id")
 
         formData.set("garage_id", gid);
         formData.set("garage_name", document.getElementById('garage-name').value);
         formData.set("name", document.getElementById('name').value);
+        console.log(document.getElementById('name').value)
         formData.set("email", document.getElementById('email').value);
+        console.log(document.getElementById('email').value)
         formData.set("date", document.getElementById('date').value);
         formData.set("time", document.getElementById('time').value);
         formData.set("service", document.getElementById('services').value);
@@ -307,13 +315,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const response = await fetch("http://localhost:5001/api/bookslot/setbookslot", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+             },
             body: JSON.stringify(jsonData), 
         });
 
         const data = await response.json();
 
-        console.log(data.message)
+        console.log(data)
 
         if(!response.ok) throw new Error(data.message || "something went wrong pls try again");
 

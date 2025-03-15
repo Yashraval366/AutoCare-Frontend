@@ -440,15 +440,6 @@ h3 {
     cursor: pointer;
 }
 
-.cancel-btn {
-    padding: 10px;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
 .save-btn:hover {
     background-color: #218838;
 }

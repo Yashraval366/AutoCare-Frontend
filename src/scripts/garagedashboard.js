@@ -175,31 +175,32 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
+            if (!response.ok) {
+                throw new Error(`HTTP Error: ${response.status}`);
+            }
+
             const data = await response.json();
             console.log("API Response:", data);
 
             const bookings = data.bookings || [];
+            bookings.sort((a, b) => a.queue_position - b.queue_position);
+            console.log("All Bookings:", bookings);
 
             const today = new Date();
-            const todayDate = new Date(today.getTime() - today.getTimezoneOffset() * 60000)
-                .toISOString()
-                .split('T')[0];
+            const todayDate = today.toISOString().split('T')[0];
+
             console.log("Today's Local Date:", todayDate);
 
             const todaysBookings = bookings.filter(booking => {
-                let bookingDate = new Date(booking.date);
-                let localBookingDate = new Date(bookingDate.getTime() - bookingDate.getTimezoneOffset() * 60000)
-                    .toISOString()
-                    .split('T')[0];
-
-                console.log(`Checking Booking Date: ${localBookingDate} with Today: ${todayDate}`);
-                return localBookingDate === todayDate;
+                const bookingDate = new Date(booking.date).toISOString().split('T')[0];
+                console.log(`Checking Booking Date: ${bookingDate} with Today: ${todayDate}`);
+                return bookingDate === todayDate;
             });
 
             console.log("Filtered Today's Bookings:", todaysBookings);
 
             const formatBookingData = (bookingList) => {
-                return bookingList.map((booking) => ({
+                return bookingList.map(booking => ({
                     ...booking,
                     date: new Date(booking.date).toLocaleDateString("en-GB", {
                         day: "2-digit",
@@ -216,24 +217,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 }));
             };
 
-            console.log("Formatted Today's Bookings:", formatBookingData(todaysBookings));
-            console.log("Formatted All Bookings:", formatBookingData(bookings));
+            const formattedTodayBookings = formatBookingData(todaysBookings);
+            const formattedAllBookings = formatBookingData(bookings);
 
-            recentbookings.clear();
-            recentbookings.rows.add(formatBookingData(todaysBookings));
-            recentbookings.draw();
+            console.log("Formatted Today's Bookings:", formattedTodayBookings);
+            console.log("Formatted All Bookings:", formattedAllBookings);
 
-            allbookings.clear();
-            allbookings.rows.add(formatBookingData(bookings));
-            allbookings.draw();
+            recentbookings.clear().rows.add(formattedTodayBookings).draw();
+            allbookings.clear().rows.add(formattedAllBookings).draw();
 
-            const totalBookings = bookings.length;
-            const pendingServices = bookings.filter(booking => booking.status === "Pending").length;
-            const completedServices = bookings.filter(booking => booking.status === "Completed").length;
-
-            document.getElementById("totalBookings").textContent = totalBookings;
-            document.getElementById("pendingServices").textContent = pendingServices;
-            document.getElementById("completedServices").textContent = completedServices;
+            document.getElementById("totalBookings").textContent = bookings.length;
+            document.getElementById("pendingServices").textContent = bookings.filter(b => b.status === "Pending").length;
+            document.getElementById("completedServices").textContent = bookings.filter(b => b.status === "Completed").length;
 
         } catch (err) {
             console.error("Something went wrong:", err);
