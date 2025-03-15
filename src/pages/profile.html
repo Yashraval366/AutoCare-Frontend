@@ -48,7 +48,7 @@
         }
         .navbar {
             background: #00796B;
-            color: #000;
+            color: white;
             padding: 10px;
             display: flex;
             align-items: center;
@@ -58,23 +58,6 @@
             color: white;
             margin: 0 10px;
             text-decoration: none;
-        }
-        .search-bar {
-            display: flex;
-            align-items: center;
-        }
-        .srch {
-            padding: 5px;
-            width: 200px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        .btn {
-            background: #fff;
-            border: none;
-            padding: 5px 10px;
-            margin-left: 5px;
-            cursor: pointer;
         }
         .profile {
             position: relative;
@@ -112,6 +95,11 @@
             padding: 10px;
             cursor: pointer;
         }
+        .dropdown ul li a {
+            text-decoration: none;
+            color: black;
+            display: block;
+        }
         .dropdown ul li:hover {
             background: #f0f0f0;
         }
@@ -129,10 +117,6 @@
     </div>
     <div class="content">
         <div class="navbar">
-            <div class="search-bar">
-                <input type="text" class="srch" placeholder="Search...">
-                <button class="btn" id="open-signin">Sign In</button>
-            </div>
             <div class="profile" id="profile-dropdown">
                 <img src="https://via.placeholder.com/40" alt="User Profile" id="profile-btn">
                 <div class="dropdown" id="dropdownMenu">
@@ -141,10 +125,10 @@
                         <p>Welcome User</p>
                     </div>
                     <ul>
-                        <li>⚙️ User Profile</li>
-                        <li>🔧 Edit Profile</li>
-                        <li>❓ Help</li>
-                        <li id="logout">↪️ Logout</li>
+                        <li><a href="profile.html">⚙️ User Profile</a></li>
+                        <li><a href="edit-profile.html">🔧 Edit Profile</a></li>
+                        <li><a href="help.html">❓ Help</a></li>
+                        <li><a href="logout.html">↪️ Logout</a></li>
                     </ul>
                 </div>
             </div>
