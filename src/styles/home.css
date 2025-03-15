@@ -70,19 +70,19 @@ body {
     display: flex;
 }
 
-ul{
+.menu ul{
     float: left;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-ul li{
+.menu ul li{
     list-style: none;
     font-size: 15px;
 }
 
-ul li a{
+.menu ul li a{
     text-decoration: none;
     margin: 0px 2px;
     padding: 30px 34px;
@@ -94,7 +94,7 @@ ul li a{
     transition: 0.4s ease-in-out; 
 }
 
-ul li a:hover{
+.menu ul li a:hover{
     background-color: rgb(66, 178, 209);
 }
 
@@ -525,7 +525,6 @@ h3 {
     flex-direction: column;
 }
 
-/* Profile Info */
 .dropdown .profile-info {
     padding: 0px;
     padding-bottom: 10px;
@@ -543,7 +542,6 @@ h3 {
     color: gray;
 }
 
-/* Dropdown List as Columns */
 .dropdown ul {
     list-style: none;
     padding: 0;
@@ -551,7 +549,6 @@ h3 {
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 10px;
-    /* Spacing between items */
 }
 
 .dropdown ul li {
@@ -563,7 +560,6 @@ h3 {
     transition: 0.3s;
     padding: 10px;
     width: 100%;
-    /* Makes two columns */
     text-align: center;
     border-radius: 5px;
 }

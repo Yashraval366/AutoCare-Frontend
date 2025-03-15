@@ -65,7 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 const bookslot = document.createElement('button');
                 bookslot.setAttribute("class", "book-btn open-bookbtn");
                 bookslot.innerHTML = "Book slot";
-                bookslot.onclick = () => openBookSlot(garage.id, garage.garage_name);
+                bookslot.onclick = () => openBookSlot(garage.garage_id, garage.garage_name);
+                console.log(garage.garage_id, garage.garage_name)
 
                 garageCard.appendChild(garageImg);
                 garageCard.appendChild(garageName);
@@ -81,7 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("Error: ", err);
         }
     };
-
     getgaragesInfo();
 
     function loadSignInForm() {
