@@ -3,162 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Dashboard</title>
+    <title>Dashboard</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         body {
             display: flex;
-            background-color: #f0f0f0;
+            background-color: #121212;
+            color: #E0C097;
         }
+        /* Sidebar */
         .sidebar {
             width: 250px;
-            background: #333;
-            color: white;
-            padding: 20px;
+            background: #1E1E1E;
+            padding: 30px;
             height: 100vh;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 3px 0px 10px rgba(0, 0, 0, 0.3);
         }
         .sidebar img {
-            width: 100px;
+            width: 90px;
             border-radius: 50%;
-            display: block;
-            margin: 0 auto 10px;
+            margin-bottom: 15px;
+            border: 3px solid #E0C097;
         }
         .sidebar h2 {
-            text-align: center;
             margin-bottom: 20px;
+            font-size: 22px;
         }
         .sidebar a {
             display: block;
-            color: white;
+            color: #E0C097;
             text-decoration: none;
-            padding: 10px;
+            padding: 12px;
+            border-radius: 5px;
             text-align: center;
+            margin: 10px 0;
+            width: 100%;
+            transition: background 0.3s ease;
+            font-size: 18px;
+            font-weight: bold;
         }
         .sidebar a:hover {
-            background: #575757;
+            background: #333333;
         }
+        /* Main Content */
         .content {
+            margin-left: 270px;
             flex: 1;
-            padding: 20px;
+            padding: 40px;
+            text-align: center;
         }
         .navbar {
-            background: #00796B;
-            color: white;
-            padding: 10px;
+            background: #333333;
+            color: #E0C097;
+            padding: 15px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-        }
-        .navbar a {
-            color: white;
-            margin: 0 10px;
-            text-decoration: none;
-        }
-        .profile {
-            position: relative;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
+            border-radius: 8px;
         }
         .profile img {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             margin-left: 10px;
+            border: 2px solid #E0C097;
         }
-        .dropdown {
-            display: none;
-            position: absolute;
-            top: 50px;
-            right: 0;
-            background: white;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            width: 200px;
-            text-align: left;
+        /* Home Page Styling */
+        .home-container {
+            text-align: center;
+            margin-top: 50px;
         }
-        .dropdown .profile-info {
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
+        .home-container img {
+            width: 120px;
+            border-radius: 50%;
+            border: 3px solid #E0C097;
+            margin-bottom: 20px;
         }
-        .dropdown ul {
-            list-style: none;
-            padding: 0;
+        .home-container h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: bold;
         }
-        .dropdown ul li {
-            padding: 10px;
-            cursor: pointer;
+        .home-container p {
+            font-size: 18px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
         }
-        .dropdown ul li a {
-            text-decoration: none;
-            color: black;
-            display: block;
+        .info-container {
+            margin-top: 40px;
+            padding: 30px;
+            background: #1E1E1E;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         }
-        .dropdown ul li:hover {
-            background: #f0f0f0;
+        .info-container h2 {
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+        .info-container p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
     <div class="sidebar">
         <img src="https://via.placeholder.com/100" alt="Profile Picture">
-        <h2>Burk Macklin</h2>
-        <a href="#">Home</a>
-        <a href="#">Work</a>
-        <a href="#">Support</a>
-        <a href="#">Setting</a>
-        <a href="#">Signout</a>
+        <h2>Frank Jack</h2>
+        <a href="#">🏠 Home</a>
+        <a href="./usereditprofile.html">✏️ Edit Profile</a>
+        <a href="#">📅 Book Slot History</a>
+        <a href="#">🚪 Sign Out</a>
     </div>
+
     <div class="content">
         <div class="navbar">
-            <div class="profile" id="profile-dropdown">
-                <img src="https://via.placeholder.com/40" alt="User Profile" id="profile-btn">
-                <div class="dropdown" id="dropdownMenu">
-                    <div class="profile-info">
-                        <h3 id="user-name">User</h3>
-                        <p>Welcome User</p>
-                    </div>
-                    <ul>
-                        <li><a href="profile.html">⚙️ User Profile</a></li>
-                        <li><a href="edit-profile.html">🔧 Edit Profile</a></li>
-                        <li><a href="help.html">❓ Help</a></li>
-                        <li><a href="logout.html">↪️ Logout</a></li>
-                    </ul>
-                </div>
+            <span>Welcome, Frank Jack</span>
+            <div class="profile">
+                <img src="https://via.placeholder.com/45" alt="User Profile">
             </div>
         </div>
-        <div class="card">
-            <h3>About</h3>
-            <p><strong>Full Name:</strong> Burt Macklin</p>
-            <p><strong>Email:</strong> abc@gmail.com</p>
-            <p><strong>Phone:</strong> 00923469874656</p>
-            <p><strong>Address:</strong> Street no. 4, xyz</p>
+        
+        <div class="home-container">
+            <img src="https://via.placeholder.com/120" alt="Garage Logo">
+            <h1>JEET GARAGE</h1>
+            <p>Jambusar</p>
+            <p>📞 123456</p>
         </div>
-        <div class="card">
-            <h3>Recent Projects</h3>
-            <p><strong>Project Name:</strong> Project Description</p>
+        
+        <div class="info-container">
+            <h2>Garage Information</h2>
+            <p><strong>Owner:</strong> JEET GARAGE</p>
+            <p><strong>Email:</strong> jeet1@gmail.com</p>
+            <p><strong>Services Offered:</strong> Oil Change, Tire Replacement, Engine Repair</p>
+            <p><strong>Operating Hours:</strong> Mon-Sat, 9 AM - 7 PM</p>
+            <p><strong>Ratings:</strong> ⭐⭐⭐⭐⭐ (4.8/5)</p>
         </div>
     </div>
-
-    <script>
-        document.getElementById('profile-btn').addEventListener('click', function() {
-            var dropdown = document.getElementById('dropdownMenu');
-            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-        });
-
-        document.addEventListener('click', function(event) {
-            var profile = document.getElementById('profile-dropdown');
-            var dropdown = document.getElementById('dropdownMenu');
-            if (!profile.contains(event.target)) {
-                dropdown.style.display = 'none';
-            }
-        });
-    </script>
 </body>
 </html>
