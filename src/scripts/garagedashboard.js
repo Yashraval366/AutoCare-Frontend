@@ -143,7 +143,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 body: formData,
             });
 
-            // 🔍 Check content type before parsing
             const contentType = response.headers.get("content-type");
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -192,9 +191,11 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("Today's Local Date:", todayDate);
 
             const todaysBookings = bookings.filter(booking => {
-                const bookingDate = new Date(booking.date).toISOString().split('T')[0];
-                console.log(`Checking Booking Date: ${bookingDate} with Today: ${todayDate}`);
-                return bookingDate === todayDate;
+                const bookingDate = new Date(booking.date);
+                const localBookingDate = bookingDate.toLocaleDateString('en-CA'); 
+                
+                console.log(`Checking Booking Date: ${localBookingDate} with Today: ${todayDate}`);
+                return localBookingDate === todayDate;
             });
 
             console.log("Filtered Today's Bookings:", todaysBookings);
@@ -244,6 +245,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     document.querySelector("#mytable tbody").addEventListener("click", async function (event) {
+        if (event.target.classList.contains("complete-btn")) {
+            let row = event.target.closest("tr");
+            let bookingId = event.target.getAttribute("data-id");
+            
+
+            let userEmail = row.querySelector("td:nth-child(3)").textContent.trim(); 
+            let serviceDetails = row.querySelector("td:nth-child(6)").textContent.trim();
+            
+            await updateStatus(bookingId, "Completed", userEmail, serviceDetails);
+        } else if (event.target.classList.contains("cancel-btn")) {
+            let bookingId = event.target.getAttribute("data-id");
+            await updateStatus(bookingId, "Cancelled");
+        }
+    });
+
+    document.querySelector("#alldata tbody").addEventListener("click", async function (event) {
         if (event.target.classList.contains("complete-btn")) {
             let row = event.target.closest("tr");
             let bookingId = event.target.getAttribute("data-id");

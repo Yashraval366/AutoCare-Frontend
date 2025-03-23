@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../scripts/userprofile.js"></script>
+    <link rel="stylesheet" href="../styles/userprofile.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/2.2.2/css/dataTables.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <h2 id="user-title">Welcome</h2>
+            <nav>
+                <ul>
+                    <li><a href="#" onclick="showSection('profile')"><i class="fas fa-user"></i> Garage Profile</a></li>
+                    <li><a href="#" onclick="showSection('edit-profile-info')"><i class="fas fa-edit"></i> Edit Profile Info</a></li>
+                    <li><a href="#" onclick="showSection('history')"><i class="fas fa-history"></i> Booklost History</a></li>
+                    <li id="logout"><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="content">
+            <section class="user-profile-container" id="profile-section">
+                <div class="user-profile-header">
+                    <h2 id="user-name">name: </h2>
+                    <p id="user-id">user id: </p>
+                </div>
+
+                <div class="user-details">
+                    <h3>Information</h3>
+                    <div class="detail-row">
+                        <span class="detail-label">Name: </span>
+                        <span id="user-name1" class="detail-value">yash dev</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Email: </span>
+                        <span id="user-email" class="detail-value">example@email.com</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Contact: </span>
+                        <span id="user-contact" class="detail-value">example123</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">City: </span>
+                        <span id="user-city" class="detail-value">example123</span>
+                    </div>
+                </div>
+            </section>
+            <section class="user-edit-container hidden" id="edit-profile-info-section">
+                <h2>Edit Information</h2>
+
+                <div class="user-edit-form">
+                    <div class="form-group">
+                        <label for="edit-user-name">Name</label>
+                        <input type="name" id="edit-user-name" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-user-contact">Contact</label>
+                        <input type="number" name="user_contact" id="edit-user-contact">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-user-email">Email</label>
+                        <input type="email" name="user_email" id="edit-user-email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-user-city">City</label>
+                        <input type="city" name="user_city" id="edit-user-city">
+                    </div>
+
+                    <div class="form-buttons">
+                        <button class="save-btn" id="submitInfo">Save Changes</button>
+                        <button class="cancel-btn" onclick="showSection('profile')">Cancel</button>
+                    </div>
+                </div>
+            </section>
+            <div class="table-container hidden" id="history-section">
+                <h2>Your BookSlot History</h2>
+                <table id="alldata">
+                </table>
+            </div>
+        </main>
+    </div>
+    <script>
+        function showSection(section) {
+            const sections = ["profile-section", "edit-profile-info-section", "history-section"];
+            const topbar = document.querySelector(".topbar");
+            const stats = document.querySelector(".stats");
+
+            sections.forEach(id => {
+                let el = document.getElementById(id);
+                if (el) el.classList.add("hidden");
+            });
+
+            let selectedSection = document.getElementById(section + "-section");
+            if (selectedSection) selectedSection.classList.remove("hidden");
+
+        }
+    </script>
+</body>
+</html>
