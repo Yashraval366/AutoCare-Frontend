@@ -4,216 +4,151 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         body {
             display: flex;
-            background: #f5f5f5;
+            background-color: #121212;
+            color: #E0C097;
         }
         /* Sidebar */
         .sidebar {
             width: 250px;
+            background: #1E1E1E;
+            padding: 30px;
             height: 100vh;
-            background: #2c1e58;
-            color: white;
-            padding: 20px;
             position: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 3px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+        .sidebar img {
+            width: 90px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 3px solid #E0C097;
         }
         .sidebar h2 {
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            margin-bottom: 20px;
+            font-size: 22px;
         }
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-        .sidebar ul li {
+        .sidebar a {
+            display: block;
+            color: #E0C097;
+            text-decoration: none;
             padding: 12px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .sidebar ul li:hover {
-            background: #4c3793;
             border-radius: 5px;
+            text-align: center;
+            margin: 10px 0;
+            width: 100%;
+            transition: background 0.3s ease;
+            font-size: 18px;
+            font-weight: bold;
         }
+        .sidebar a:hover {
+            background: #333333;
+        }
+        /* Main Content */
         .content {
             margin-left: 270px;
-            width: calc(100% - 270px);
-            padding: 20px;
+            flex: 1;
+            padding: 40px;
+            text-align: center;
         }
-        .top-bar {
+        .navbar {
+            background: #333333;
+            color: #E0C097;
+            padding: 15px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 10px;
-            background: white;
+            justify-content: space-between;
             border-radius: 8px;
+        }
+        .profile img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            margin-left: 10px;
+            border: 2px solid #E0C097;
+        }
+        /* Home Page Styling */
+        .home-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .home-container img {
+            width: 120px;
+            border-radius: 50%;
+            border: 3px solid #E0C097;
             margin-bottom: 20px;
         }
-        .stats {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-        }
-        .stat-card {
-            background: white;
-            padding: 15px;
-            width: 150px;
-            text-align: center;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .stat-card h3 {
-            margin-bottom: 5px;
-            font-size: 16px;
-        }
-        .stat-card p {
-            font-size: 22px;
-            font-weight: bold;
-        }
-        .stat-card span {
-            font-size: 14px;
-            color: gray;
-        }
-        .cards {
-            display: flex;
-            gap: 20px;
-            margin-top: 20px;
-            justify-content: center;
-        }
-        .card {
-            background: white;
-            padding: 20px;
-            width: 280px;
-            text-align: center;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .card img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
+        .home-container h1 {
+            font-size: 32px;
             margin-bottom: 10px;
-        }
-        .card h3 {
-            margin-bottom: 5px;
-        }
-        .card p {
-            font-size: 14px;
-            color: gray;
-        }
-        .btn {
-            display: inline-block;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 5px;
-            text-decoration: none;
             font-weight: bold;
         }
-        .yellow-btn {
-            background: #fbbc05;
-            color: white;
+        .home-container p {
+            font-size: 18px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
         }
-        .red-btn {
-            background: #dc3545;
-            color: white;
+        .info-container {
+            margin-top: 40px;
+            padding: 30px;
+            background: #1E1E1E;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         }
-        .social-icons {
-            margin-top: 15px;
+        .info-container h2 {
+            font-size: 26px;
+            margin-bottom: 20px;
         }
-        .social-icons i {
-            margin: 5px;
-            cursor: pointer;
-            color: #666;
+        .info-container p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
-
-<!-- Sidebar -->
-<div class="sidebar">
-    <h2>🌿 Clover</h2>
-    <ul>
-        <li><i class="fa fa-chart-pie"></i> Dashboard</li>
-        <li><i class="fa fa-users"></i> Users</li>
-        <li><i class="fa fa-envelope"></i> Inbox</li>
-        <li><i class="fa fa-book"></i> Knowledge</li>
-    </ul>
-</div>
-
-<!-- Main Content -->
-<div class="content">
-    <div class="top-bar">
-        <h2>Hi, Frank Jack</h2>
+    <div class="sidebar">
+        <img src="https://via.placeholder.com/100" alt="Profile Picture">
+        <h2>Frank Jack</h2>
+        <a href="#">🏠 Home</a>
+        <a href="./usereditprofile.html">✏️ Edit Profile</a>
+        <a href="#">📅 Book Slot History</a>
+        <a href="#">🚪 Sign Out</a>
     </div>
 
-    <!-- Stats Section -->
-    <div class="stats">
-        <div class="stat-card">
-            <h3>Minimal</h3>
-            <p>132</p>
-            <span>45%</span>
-        </div>
-        <div class="stat-card">
-            <h3>Mild</h3>
-            <p>120</p>
-            <span>25%</span>
-        </div>
-        <div class="stat-card">
-            <h3>Moderate</h3>
-            <p>25</p>
-            <span>17%</span>
-        </div>
-        <div class="stat-card">
-            <h3>Severe</h3>
-            <p>5</p>
-            <span>13%</span>
-        </div>
-    </div>
-
-    <!-- User Cards -->
-    <div class="cards">
-        <div class="card">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
-            <h3>Bess Wills</h3>
-            <p>Bracelet ID: SFG 38393</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <a href="#" class="btn yellow-btn">Next Appointment</a>
-            <div class="social-icons">
-                <i class="fab fa-google"></i>
-                <i class="fab fa-facebook"></i>
-                <i class="fab fa-twitter"></i>
-                <i class="fab fa-instagram"></i>
+    <div class="content">
+        <div class="navbar">
+            <span>Welcome, Frank Jack</span>
+            <div class="profile">
+                <img src="https://via.placeholder.com/45" alt="User Profile">
             </div>
         </div>
-
-        <div class="card">
-            <img src="https://randomuser.me/api/portraits/men/40.jpg" alt="User">
-            <h3>Bess Wills</h3>
-            <p>Bracelet ID: SFG 38393</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <a href="#" class="btn red-btn">Next Appointment</a>
-            <div class="social-icons">
-                <i class="fab fa-google"></i>
-                <i class="fab fa-facebook"></i>
-                <i class="fab fa-twitter"></i>
-                <i class="fab fa-instagram"></i>
-            </div>
+        
+        <div class="home-container">
+            <img src="https://via.placeholder.com/120" alt="Garage Logo">
+            <h1>JEET GARAGE</h1>
+            <p>Jambusar</p>
+            <p>📞 123456</p>
+        </div>
+        
+        <div class="info-container">
+            <h2>Garage Information</h2>
+            <p><strong>Owner:</strong> JEET GARAGE</p>
+            <p><strong>Email:</strong> jeet1@gmail.com</p>
+            <p><strong>Services Offered:</strong> Oil Change, Tire Replacement, Engine Repair</p>
+            <p><strong>Operating Hours:</strong> Mon-Sat, 9 AM - 7 PM</p>
+            <p><strong>Ratings:</strong> ⭐⭐⭐⭐⭐ (4.8/5)</p>
         </div>
     </div>
-
-</div>
-
 </body>
 </html>
