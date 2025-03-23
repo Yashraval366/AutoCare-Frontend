@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
         data: [],
         columns: [
             { title: "Booking_ID", data: "bookslot_id" },
-            { title: "Name", data: "name" },
-            { title: "Email", data: "email" },
+            { title: "Garage ID", data: "garage_id" },
+            { title: "Garage Name", data: "garage_name" },
             { title: "Date", data: "date" },
             { title: "Time", data: "time" },
             { title: "Service", data: "service" },
