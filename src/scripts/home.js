@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const garageImg = document.createElement("img");
                 garageImg.className = "garage-image";
-                garageImg.src = garage.garage_image ? `https://autocare-backend-production.up.railway.app/${garage.garage_image}` : "https://via.placeholder.com/150";
+                garageImg.src = garage.garage_image ? `https://autocare-backend-production.up.railway.app/uploads/${garage.garage_image}` : "https://via.placeholder.com/150";
 
                 const garageName = document.createElement("h3");
                 garageName.className = "garage-name";
