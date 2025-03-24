@@ -3,12 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("user code executed")
     const token = localStorage.getItem('authToken')
 
-    console.log(token)
-
     const UserData = async() => {
         if(token) {
             try {
-                const response = await fetch('http://localhost:5001/api/users/getusers', {
+                const response = await fetch('http://localhost:5001/api/users/getuser', {
                     method: "GET",
                     headers : {
                         "Authorization": `Bearer ${token}`,
@@ -21,10 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 const data = await response.json();
-
-                console.log(data);
-
-                console.log(data.User.username)
 
                 document.getElementById('user-name').innerHTML = data.User.username
             }

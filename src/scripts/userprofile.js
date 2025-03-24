@@ -71,19 +71,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     const updateUserData = async () => {
-        const formData = new FormData();
-        formData.set("name", document.getElementById("edit-user-name").value);
-        formData.set("city", document.getElementById("edit-user-location").value);
-        formData.set("phone", document.getElementById("edit-user-contact").value);
-        formData.set("email", document.getElementById("edit-user-email").value);
+        const userData = {
+            name: document.getElementById("edit-user-name").value,
+            city: document.getElementById("edit-user-city").value,
+            phone: document.getElementById("edit-user-contact").value,
+            email: document.getElementById("edit-user-email").value,
+        };
 
         try {
             const response = await fetch("http://localhost:5001/api/users/updateuser", {
                 method: "PUT",
                 headers: {
-                    "Authorization": `Bearer ${token}`, 
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json",
                 },
-                body: formData,
+                body: JSON.stringify(userData),
             });
 
             const contentType = response.headers.get("content-type");

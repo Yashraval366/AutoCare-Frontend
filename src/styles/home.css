@@ -506,6 +506,7 @@ h3 {
     height: 40px;
     border-radius: 50%;
     cursor: pointer;
+    margin-right: 60px;
 }
 
 .dropdown {
@@ -571,4 +572,87 @@ h3 {
 .dropdown ul li img {
     width: 24px;
     margin-bottom: 5px;
+}
+
+.container {
+    width: 900px;
+    margin: 30px auto;
+    text-align: center;
+    margin-left: 130px;
+    display: flex;
+}
+
+.container span {
+    font-size: x-large;
+    outline-style: none;
+    margin: 5px;
+    width: 305px;
+}
+
+.container select {
+    width: 50%;
+    padding: 8px 11px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.mybtn {
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 39px;
+    width: 98px;
+    margin: 6px;
+    margin-top: 13px;
+}
+
+.mybtn:hover {
+    background-color: #e55a00;
+    transform: scale(1.05);
+}
+
+.mybtn:active {
+    transform: scale(0.98);
+}
+
+.mybtn i {
+    font-size: 20px;
+}
+
+.newbtn {
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 39px;
+    width: 45px;
+    margin: 6px;
+    margin-top: 13px;
+}
+
+.newbtn:hover {
+    background-color: #e55a00;
+    transform: scale(1.05);
+}
+
+.newbtn:active {
+    transform: scale(0.98);
+}
+
+.newbtn i {
+    font-size: 20px;
 }

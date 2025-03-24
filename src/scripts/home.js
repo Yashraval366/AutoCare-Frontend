@@ -8,81 +8,150 @@ document.addEventListener("DOMContentLoaded", () => {
 
     signInBtn.addEventListener("click", loadSignInForm);
 
-    const getgaragesInfo = async () => {
-        const garagesContainer = document.getElementById('garage-list');
+    const searchInput = document.querySelector(".srch");
+    const garageListContainer = document.getElementById("garage-list");
+    const searchBtn = document.getElementById("open-search");
 
+    const fetchGarages = async (searchTerm) => {
         try {
-            const response = await fetch('http://localhost:5001/api/garages/garagesinfo');
+            const response = await fetch(`http://localhost:5001/api/garages/searchgarage?search=${encodeURIComponent(searchTerm)}`);
+
+            if (!response.ok) throw new Error("Failed to fetch garages");
+
             const data = await response.json();
-
-            console.log(data);
             const garages = data.Garages;
+            garageListContainer.innerHTML = "";
 
-            garagesContainer.innerHTML = ""; 
+            if (garages.length === 0) {
+                garageListContainer.innerHTML = `<p>No garages found for "${searchTerm}".</p>`;
+                return;
+            }
 
             garages.forEach((garage) => {
-                const garageCard = document.createElement('div');
-                garageCard.setAttribute("class", "garage-card");
+                const garageCard = document.createElement("div");
+                garageCard.className = "garage-card";
 
-                const garageImg = document.createElement('img');
-                garageImg.setAttribute("class", "garage-image");
-                garageImg.src = `http://localhost:5001${garage.garage_image}`;
+                const garageImg = document.createElement("img");
+                garageImg.className = "garage-image";
+                garageImg.src = garage.garage_image ? `http://localhost:5001${garage.garage_image}` : "https://via.placeholder.com/150";
 
-                const garageName = document.createElement('h3');
-                garageName.setAttribute("class", "garage-name");
-                garageName.innerHTML = garage.garage_name;
+                const garageName = document.createElement("h3");
+                garageName.className = "garage-name";
+                garageName.textContent = garage.garage_name;
 
-                
-                const locationContainer = document.createElement('div');
-                locationContainer.setAttribute("class", "label-container");
-                const locationLabel = document.createElement('label');
-                locationLabel.setAttribute("class", "locationlabel");
-                locationLabel.innerHTML = "Location:";
-                const garagelocation = document.createElement('p');
-                garagelocation.setAttribute("class", "garage-location");
-                garagelocation.innerHTML = garage.garage_location;
-                locationContainer.appendChild(locationLabel);
-                locationContainer.appendChild(garagelocation);
+                const locationContainer = document.createElement("div");
+                locationContainer.className = "label-container";
+                locationContainer.innerHTML = `<label class="locationlabel">Location:</label> <p class="garage-location">${garage.garage_location}</p>`;
 
-            
-                const queueContainer = document.createElement('div');
-                queueContainer.setAttribute("class", "label-container");
-                const queuelabel = document.createElement('label');
-                queuelabel.setAttribute("class", "queuelabel");
-                queuelabel.innerHTML = "Queue:";
-                const queue = document.createElement('div');
-                queue.setAttribute("class", "queue");
+                const queueContainer = document.createElement("div");
+                queueContainer.className = "label-container";
+                queueContainer.innerHTML = `<label class="queuelabel">Queue:</label>`;
 
+                const queue = document.createElement("div");
+                queue.className = "queue";
                 for (let i = 0; i < garage.queue_count; i++) {
                     const dot = document.createElement("span");
-                    dot.setAttribute("class", "dot");
+                    dot.className = "dot";
                     queue.appendChild(dot);
                 }
-
-                queueContainer.appendChild(queuelabel);
                 queueContainer.appendChild(queue);
 
-                const bookslot = document.createElement('button');
-                bookslot.setAttribute("class", "book-btn open-bookbtn");
-                bookslot.innerHTML = "Book slot";
-                bookslot.onclick = () => openBookSlot(garage.garage_id, garage.garage_name);
-                console.log(garage.garage_id, garage.garage_name)
+                const bookSlotBtn = document.createElement("button");
+                bookSlotBtn.className = "book-btn open-bookbtn";
+                bookSlotBtn.textContent = "Book Slot";
+                bookSlotBtn.onclick = () => openBookSlot(garage.garage_id, garage.garage_name);
 
-                garageCard.appendChild(garageImg);
-                garageCard.appendChild(garageName);
-                garageCard.appendChild(locationContainer);
-                garageCard.appendChild(queueContainer);
-                garageCard.appendChild(bookslot);
+                garageCard.append(garageImg, garageName, locationContainer, queueContainer, bookSlotBtn);
+                garageListContainer.appendChild(garageCard);
+            });
 
+        } catch (error) {
+            console.error("Error fetching garages:", error);
+            garageListContainer.innerHTML = "<p>Failed to load garages.</p>";
+        }
+    };
+
+    searchBtn.addEventListener("click", () => {
+        const searchTerm = searchInput.value.trim();
+        if (searchTerm.length > 2) {
+            fetchGarages(searchTerm);
+        } else {
+            getGaragesInfo(); 
+        }
+    });
+
+    const getGaragesInfo = async (city = "") => {
+        const garagesContainer = document.getElementById("garage-list");
+        garagesContainer.innerHTML = "<p>Loading garages...</p>";
+
+        try {
+            let url = "http://localhost:5001/api/garages/garagesinfo";
+            if (city) url += `?city=${encodeURIComponent(city)}`;
+
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+            const data = await response.json();
+            const garages = data.Garages;
+
+            garagesContainer.innerHTML = "";
+
+            if (garages.length === 0) {
+                garagesContainer.innerHTML = "<p>No garages found.</p>";
+                return;
+            }
+
+            garages.forEach((garage) => {
+                const garageCard = document.createElement("div");
+                garageCard.className = "garage-card";
+
+                const garageImg = document.createElement("img");
+                garageImg.className = "garage-image";
+                garageImg.src = garage.garage_image ? `http://localhost:5001${garage.garage_image}` : "https://via.placeholder.com/150";
+
+                const garageName = document.createElement("h3");
+                garageName.className = "garage-name";
+                garageName.textContent = garage.garage_name;
+
+                const locationContainer = document.createElement("div");
+                locationContainer.className = "label-container";
+                locationContainer.innerHTML = `<label class="locationlabel">Location:</label> <p class="garage-location">${garage.garage_location}</p>`;
+
+                const queueContainer = document.createElement("div");
+                queueContainer.className = "label-container";
+                queueContainer.innerHTML = `<label class="queuelabel">Queue:</label>`;
+
+                const queue = document.createElement("div");
+                queue.className = "queue";
+                for (let i = 0; i < garage.queue_count; i++) {
+                    const dot = document.createElement("span");
+                    dot.className = "dot";
+                    queue.appendChild(dot);
+                }
+                queueContainer.appendChild(queue);
+
+                const bookSlotBtn = document.createElement("button");
+                bookSlotBtn.className = "book-btn open-bookbtn";
+                bookSlotBtn.textContent = "Book Slot";
+                bookSlotBtn.onclick = () => openBookSlot(garage.garage_id, garage.garage_name);
+
+                garageCard.append(garageImg, garageName, locationContainer, queueContainer, bookSlotBtn);
                 garagesContainer.appendChild(garageCard);
             });
 
         } catch (err) {
-            garagesContainer.innerHTML = "No Data Found";
-            console.log("Error: ", err);
+            garagesContainer.innerHTML = "<p>Failed to load garages.</p>";
+            console.error("Error:", err);
         }
     };
-    getgaragesInfo();
+
+    document.getElementById("city-filter").addEventListener("change", function () {
+        const selectedCity = this.value;
+        getGaragesInfo(selectedCity);
+    });
+
+    getGaragesInfo();
+
 
     function loadSignInForm() {
     fetch("./pages/signIn.html")
