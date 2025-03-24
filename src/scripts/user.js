@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const UserData = async() => {
         if(token) {
             try {
-                const response = await fetch('http://localhost:5001/api/users/getuser', {
+                const response = await fetch('https://autocare-backend-production.up.railway.app/api/users/getuser', {
                     method: "GET",
                     headers : {
                         "Authorization": `Bearer ${token}`,

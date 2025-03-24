@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const GarageData = async () => {
     
         try {
-            const response = await fetch('http://localhost:5001/api/garageown/garagedata', {
+            const response = await fetch('https://autocare-backend-production.up.railway.app/api/garageown/garagedata', {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-            const response = await fetch("http://localhost:5001/api/garages/updategarage", {
+            const response = await fetch("https://autocare-backend-production.up.railway.app/api/garages/updategarage", {
                 method: "PUT",
                 headers: {
                     "Authorization": `Bearer ${token}`, 
@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
    const getBookslotData = async () => {
         try {
-            const response = await fetch('http://localhost:5001/api/bookslot/getbookslot', {
+            const response = await fetch('https://autocare-backend-production.up.railway.app/api/bookslot/getbookslot', {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -278,7 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const updateStatus = async (bookslot_id, status, userEmail = "", serviceDetails = "") => {
         try {
-            const response = await fetch("http://localhost:5001/api/bookslot/updatestatus", {
+            const response = await fetch("https://autocare-backend-production.up.railway.app/api/bookslot/updatestatus", {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -306,7 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const sendEmail = async (userEmail, serviceDetails) => {
         try {
-            const response = await fetch("http://localhost:5001/api/send/sendemail", {
+            const response = await fetch("https://autocare-backend-production.up.railway.app/api/send/sendemail", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ userEmail, serviceDetails })
