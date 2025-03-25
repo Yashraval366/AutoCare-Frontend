@@ -204,7 +204,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const formData = new FormData(form);
             const jsonData = Object.fromEntries(formData.entries());
 
-
             const response = await fetch("https://autocare-backend-production.up.railway.app/api/users/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -212,29 +211,15 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             const data = await response.json();
-            localStorage.setItem("authToken", data.token);
-            localStorage.setItem("userRole", jsonData.role); 
-
             if (!response.ok) throw new Error(data.message || "Login failed");
 
-            alert("Login successfully");
+            localStorage.setItem("authToken", data.token);
+            localStorage.setItem("userRole", jsonData.role);
 
-            const tokenPayload = JSON.parse(atob(data.token.split(".")[1]));
+            alert("Login successful");
 
-            console.log("Decoded Token: ",tokenPayload)
+            window.location.reload();
 
-            if(jsonData.role === "garageowner") {
-                window.location.href = "./pages/garagedashboard.html";
-                console.log(data.token, jsonData.role)
-            } else {
-                window.location.href = "#"
-            }
-
-            
-            updateUI();
-            form.reset();
-            document.getElementById("signin-container").style.display = "none";
-            
         } catch (error) {
             console.error("Login error:", error);
             alert(error.message);
@@ -420,4 +405,37 @@ document.addEventListener("DOMContentLoaded", () => {
             modal.classList.remove("fade-out");
         }, 1000);
     }
+
+    const UserData = async() => {
+        const token = localStorage.getItem('authToken')
+        if(token) {
+            try {
+                const response = await fetch('https://autocare-backend-production.up.railway.app/api/users/getuser', {
+                    method: "GET",
+                    headers : {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json" 
+                    }
+                })
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch user data");
+                }
+
+                const data = await response.json();
+
+                document.getElementById('user-name').innerHTML = data.User.username
+            }
+            catch(err) {
+                console.log("Error: ",err)
+            }
+        }
+    }
+    UserData();
+
+    document.getElementById('logout').addEventListener('click', ()=>{
+        localStorage.removeItem("authToken");
+        window.location.href = "#";
+        alert("Logged out successfully") 
+    })
 });
