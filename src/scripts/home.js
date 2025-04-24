@@ -216,9 +216,18 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("authToken", data.token);
             localStorage.setItem("userRole", jsonData.role);
 
+            console.log(data.role);
+            console.log("yaayaa")
+
             alert("Login successful");
 
-            window.location.reload();
+            console.log(data.role)
+
+            if (data.role === "garageowner") {
+                window.location.href = "./pages/garagedashboard.html";
+            } else {
+                window.location.reload();
+            }
 
         } catch (error) {
             console.error("Login error:", error);
@@ -372,7 +381,7 @@ document.addEventListener("DOMContentLoaded", () => {
             headers: { 
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
-             },
+            },
             body: JSON.stringify(jsonData), 
         });
 
