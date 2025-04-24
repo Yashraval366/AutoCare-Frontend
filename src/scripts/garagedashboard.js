@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById('garage-title').innerHTML = garage.garage_name;
             document.getElementById('garage-title').innerHTML = garage.garage_name;
             document.getElementById('garage-name').innerHTML = garage.garage_name;
-            document.getElementById('garage-image').src = `http://localhost:5001${garage.garage_image}`
+            document.getElementById('garage-image').src = `https://autocare-backend-production.up.railway.app${garage.garage_image}`
             document.getElementById('garage-address').innerHTML = garage.garage_location;
             document.getElementById('garage-contact').innerHTML = '📞 '+garage.garage_contact;
             document.getElementById('garage-owner').innerHTML = garage.garage_name;
@@ -109,8 +109,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             document.getElementById("edit-garage-name").value = garage.garage_name;
-            document.getElementById('profile-image').src = `http://localhost:5001${garage.garage_image}`
-            document.getElementById("edit-garage-image").src = `http://localhost:5001${garage.garage_image}`
+            document.getElementById('profile-image').src = `https://autocare-backend-production.up.railway.app${garage.garage_image}`
+            document.getElementById("edit-garage-image").src = `https://autocare-backend-production.up.railway.app${garage.garage_image}`
             document.getElementById("edit-garage-location").value = garage.garage_location;
             document.getElementById("edit-garage-contact").value = garage.garage_contact;
             document.getElementById("edit-garage-email").value = garage.garage_email;
