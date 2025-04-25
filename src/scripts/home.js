@@ -223,11 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             console.log(data.role)
 
-            if (data.role === "garageowner") {
-                window.location.href = "./pages/garagedashboard.html";
-            } else {
-                window.location.reload();
-            }
+            window.location.reload();
 
         } catch (error) {
             console.error("Login error:", error);
