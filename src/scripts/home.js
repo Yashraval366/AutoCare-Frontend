@@ -216,14 +216,14 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("authToken", data.token);
             localStorage.setItem("userRole", jsonData.role);
 
-            console.log(data.role);
-            console.log("yaayaa")
+            if(jsonData.role == "garageowner"){
+                window.location.href = './pages/garagedashboard.html'
+            }else{
+                window.location.reload();
+            }
 
             alert("Login successful");
 
-            console.log(data.role)
-
-            window.location.reload();
 
         } catch (error) {
             console.error("Login error:", error);

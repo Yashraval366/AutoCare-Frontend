@@ -20,7 +20,7 @@
             <h2 id="user-title">Welcome</h2>
             <nav>
                 <ul>
-                    <li><a href="#" onclick="showSection('profile')"><i class="fas fa-user"></i> Garage Profile</a></li>
+                    <li><a href="#" onclick="showSection('profile')"><i class="fas fa-user"></i> Profile</a></li>
                     <li><a href="#" onclick="showSection('edit-profile-info')"><i class="fas fa-edit"></i> Edit Profile Info</a></li>
                     <li><a href="#" onclick="showSection('history')"><i class="fas fa-history"></i> Booklost History</a></li>
                     <li id="logout"><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
@@ -30,26 +30,34 @@
         <main class="content">
             <section class="user-profile-container" id="profile-section">
                 <div class="user-profile-header">
-                    <h2 id="user-name">name: </h2>
-                    <p id="user-id">user id: </p>
+                    <div class="user-banner">
+                        <div class="user-initials">
+                            <i class="fas fa-user-circle fa-3x"></i>
+                        </div>
+                        <div class="user-info-text">
+                            <h2 id="user-name">Name: </h2>
+                            <p id="user-id">User ID: </p>
+                        </div>
+                    </div>
                 </div>
-
+            
                 <div class="user-details">
                     <h3>Information</h3>
+            
                     <div class="detail-row">
-                        <span class="detail-label">Name: </span>
-                        <span id="user-name1" class="detail-value">yash dev</span>
+                        <span class="detail-label">Name:</span>
+                        <span id="user-name1" class="detail-value">Yash Dev</span>
                     </div>
                     <div class="detail-row">
-                        <span class="detail-label">Email: </span>
+                        <span class="detail-label">Email:</span>
                         <span id="user-email" class="detail-value">example@email.com</span>
                     </div>
                     <div class="detail-row">
-                        <span class="detail-label">Contact: </span>
+                        <span class="detail-label">Contact:</span>
                         <span id="user-contact" class="detail-value">example123</span>
                     </div>
                     <div class="detail-row">
-                        <span class="detail-label">City: </span>
+                        <span class="detail-label">City:</span>
                         <span id="user-city" class="detail-value">example123</span>
                     </div>
                 </div>
