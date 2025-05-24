@@ -58,7 +58,7 @@ const registerUser = async () => {
     if (loading) loading.style.display = "flex";
 
     try {
-        const response = await fetch("https://autocare-backend-production.up.railway.app/api/users/register", {
+        const response = await fetch("https://autocare-backend.onrender.com//api/users/register", {
             method: "POST",
             body: formData,
         });
