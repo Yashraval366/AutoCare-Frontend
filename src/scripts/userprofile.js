@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const UserData = async () => {
     
         try {
-            const response = await fetch('https://autocare-backend.onrender.com//api/users/getuser', {
+            const response = await fetch('https://autocare-backend-production-c724.up.railway.app/api/users/getuser', {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         try {
-            const response = await fetch("https://autocare-backend.onrender.com//api/users/updateuser", {
+            const response = await fetch("https://autocare-backend-production-c724.up.railway.app/api/users/updateuser", {
                 method: "PUT",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
    const getBookslothistory = async () => {
         try {
-            const response = await fetch('https://autocare-backend.onrender.com//api/users/history', {
+            const response = await fetch('https://autocare-backend-production-c724.up.railway.app/api/users/history', {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${token}`,

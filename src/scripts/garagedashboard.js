@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const GarageData = async () => {
     
         try {
-            const response = await fetch('https://autocare-backend.onrender.com//api/garageown/garagedata', {
+            const response = await fetch('https://autocare-backend-production-c724.up.railway.app/api/garageown/garagedata', {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById('garage-title').innerHTML = garage.garage_name;
             document.getElementById('garage-title').innerHTML = garage.garage_name;
             document.getElementById('garage-name').innerHTML = garage.garage_name;
-            document.getElementById('garage-image').src = `https://autocare-backend.onrender.com/${garage.garage_image}`
+            document.getElementById('garage-image').src = `https://autocare-backend-production-c724.up.railway.app${garage.garage_image}`
             document.getElementById('garage-address').innerHTML = garage.garage_location;
             document.getElementById('garage-contact').innerHTML = '📞 '+garage.garage_contact;
             document.getElementById('garage-owner').innerHTML = garage.garage_name;
@@ -109,8 +109,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             document.getElementById("edit-garage-name").value = garage.garage_name;
-            document.getElementById('profile-image').src = `https://autocare-backend.onrender.com/${garage.garage_image}`
-            document.getElementById("edit-garage-image").src = `https://autocare-backend.onrender.com/${garage.garage_image}`
+            document.getElementById('profile-image').src = `https://autocare-backend-production-c724.up.railway.app${garage.garage_image}`
+            document.getElementById("edit-garage-image").src = `https://autocare-backend-production-c724.up.railway.app${garage.garage_image}`
             document.getElementById("edit-garage-location").value = garage.garage_location;
             document.getElementById("edit-garage-contact").value = garage.garage_contact;
             document.getElementById("edit-garage-email").value = garage.garage_email;
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-            const response = await fetch("https://autocare-backend.onrender.com//api/garages/updategarage", {
+            const response = await fetch("https://autocare-backend-production-c724.up.railway.app/api/garages/updategarage", {
                 method: "PUT",
                 headers: {
                     "Authorization": `Bearer ${token}`, 
@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
    const getBookslotData = async () => {
         try {
-            const response = await fetch('https://autocare-backend.onrender.com//api/bookslot/getbookslot', {
+            const response = await fetch('https://autocare-backend-production-c724.up.railway.app/api/bookslot/getbookslot', {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -278,7 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const updateStatus = async (bookslot_id, status, userEmail = "", serviceDetails = "") => {
         try {
-            const response = await fetch("https://autocare-backend.onrender.com//api/bookslot/updatestatus", {
+            const response = await fetch("https://autocare-backend-production-c724.up.railway.app/api/bookslot/updatestatus", {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -306,7 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const sendEmail = async (userEmail, serviceDetails) => {
         try {
-            const response = await fetch("https://autocare-backend.onrender.com//api/send/sendemail", {
+            const response = await fetch("https://autocare-backend-production-c724.up.railway.app/api/send/sendemail", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ userEmail, serviceDetails })

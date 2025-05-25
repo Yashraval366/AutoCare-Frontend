@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const fetchGarages = async (searchTerm) => {
         try {
-            const response = await fetch(`https://autocare-backend.onrender.com//api/garages/searchgarage?search=${encodeURIComponent(searchTerm)}`);
+            const response = await fetch(`https://autocare-backend-production-c724.up.railway.app/api/garages/searchgarage?search=${encodeURIComponent(searchTerm)}`);
 
             if (!response.ok) throw new Error("Failed to fetch garages");
 
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const garageImg = document.createElement("img");
                 garageImg.className = "garage-image";
-                garageImg.src = garage.garage_image ? `https://autocare-backend.onrender.com/${garage.garage_image}` : "https://via.placeholder.com/150";
+                garageImg.src = garage.garage_image ? `https://autocare-backend-production-c724.up.railway.app${garage.garage_image}` : "https://via.placeholder.com/150";
 
                 const garageName = document.createElement("h3");
                 garageName.className = "garage-name";
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
         garagesContainer.innerHTML = "<p>Loading garages...</p>";
 
         try {
-            let url = "https://autocare-backend.onrender.com//api/garages/garagesinfo";
+            let url = "https://autocare-backend-production-c724.up.railway.app/api/garages/garagesinfo";
             if (city) url += `?city=${encodeURIComponent(city)}`;
 
             const response = await fetch(url);
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const garageImg = document.createElement("img");
                 garageImg.className = "garage-image";
-                garageImg.src = garage.garage_image ? `https://autocare-backend.onrender.com/${garage.garage_image}` : "https://via.placeholder.com/150";
+                garageImg.src = garage.garage_image ? `https://autocare-backend-production-c724.up.railway.app${garage.garage_image}` : "https://via.placeholder.com/150";
 
                 const garageName = document.createElement("h3");
                 garageName.className = "garage-name";
@@ -204,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const formData = new FormData(form);
             const jsonData = Object.fromEntries(formData.entries());
 
-            const response = await fetch("https://autocare-backend.onrender.com//api/users/login", {
+            const response = await fetch("https://autocare-backend-production-c724.up.railway.app/api/users/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(jsonData)
@@ -243,7 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-            const response = await fetch("https://autocare-backend.onrender.com//api/users/check-auth", {
+            const response = await fetch("https://autocare-backend-production-c724.up.railway.app/api/users/check-auth", {
                 method: "GET",
                 headers: { "Authorization": `Bearer ${token}` }
             });
@@ -279,7 +279,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!token) return logoutUser();
 
         try {
-            const response = await fetch("https://autocare-backend.onrender.com//api/users/check-auth", {
+            const response = await fetch("https://autocare-backend-production-c724.up.railway.app/api/users/check-auth", {
                 method: "GET",
                 headers: { "Authorization": `Bearer ${token}` }
             });
@@ -372,7 +372,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const jsonData = Object.fromEntries(formData.entries());
 
-        const response = await fetch("https://autocare-backend.onrender.com//api/bookslot/setbookslot", {
+        const response = await fetch("https://autocare-backend-production-c724.up.railway.app/api/bookslot/setbookslot", {
             method: "POST",
             headers: { 
                 "Content-Type": "application/json",
@@ -415,7 +415,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const token = localStorage.getItem('authToken')
         if(token) {
             try {
-                const response = await fetch('https://autocare-backend.onrender.com//api/users/getuser', {
+                const response = await fetch('https://autocare-backend-production-c724.up.railway.app/api/users/getuser', {
                     method: "GET",
                     headers : {
                         "Authorization": `Bearer ${token}`,
